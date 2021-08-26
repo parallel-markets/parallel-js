@@ -5,7 +5,7 @@ specifiers:
   '@babel/plugin-transform-runtime': ^7.7.6
   '@babel/preset-env': ^7.7.7
   '@babel/runtime': ^7.7.7
-  '@parallelmarkets/parallel-js': link:../..
+  '@parallelmarkets/parallel-js': ^0.0.1
   babel-loader: ^8.0.6
   babel-preset-env: ^1.7.0
   html-webpack-plugin: ^3.2.0
@@ -14,7 +14,7 @@ specifiers:
   webpack-dev-server: ^3.8.1
 
 dependencies:
-  '@parallelmarkets/parallel-js': link:../..
+  '@parallelmarkets/parallel-js': 0.0.1
 
 devDependencies:
   '@babel/core': 7.15.0
@@ -1148,6 +1148,10 @@ packages:
       '@babel/helper-validator-identifier': 7.14.9
       to-fast-properties: 2.0.0
     dev: true
+
+  /@parallelmarkets/parallel-js/0.0.1:
+    resolution: {integrity: sha512-jJMa052dYFaAm9MFI4yrIHcyn9tJbxVHYAtFxIlgiDOV6NFs2QS/rso74hgastn4h3kp366/CYhSuF/m/6jpHg==}
+    dev: false
 
   /@types/glob/7.1.4:
     resolution: {integrity: sha512-w+LsMxKyYQm347Otw+IfBXOv9UWVjpHpCDdbBMt8Kz/xbvCYNjP+0qPh91Km3iKfSRLBB0P7fAMf0KHrPu+MyA==}

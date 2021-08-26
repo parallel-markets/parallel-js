@@ -31,6 +31,6 @@
     "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
-    "@parallelmarkets/parallel-js": "link:../.."
+    "@parallelmarkets/parallel-js": "^0.0.1"
   }
 }

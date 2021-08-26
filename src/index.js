@@ -1,7 +1,8 @@
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
 
-const findScript = () =>
-  [...document.querySelectorAll(`script[src^="${V1_URL}"]`)][0] ?? null
+const findScript = () => {
+  return [...document.querySelectorAll(`script[src^="${V1_URL}"]`)][0] ?? null
+}
 
 const addScript = () => {
   const script = document.createElement('script')
@@ -59,13 +60,20 @@ const loadScript = () => {
   return parallelPromise
 }
 
+// Wait a tick and then try to load the script.  This is done
+// to load the SDK upon library import.
+Promise.resolve()
+  .then(() => loadScript())
+  .catch(console.warn)
+
 let loadCalled = false
 
 export const loadParallel = (config) => {
-  if (loadCalled)
-    return Promise.reject(
-      new Error('You cannot call loadParallel more than once')
-    )
+  if (loadCalled) {
+    const error = new Error('You cannot call loadParallel more than once')
+    return Promise.reject(error)
+  }
+
   loadCalled = true
 
   return loadScript().then((Parallel) => {

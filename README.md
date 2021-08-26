@@ -1,6 +1,6 @@
 # Parallel Markets JavaScript SDK ES Module
 
-[![npm version](https://img.shields.io/npm/v/@parallelmarkets/overlay-loader.svg?style=flat-square)](https://www.npmjs.com/package/@parallelmarkets/overlay-loader)
+[![npm version](https://img.shields.io/npm/v/@parallelmarkets/parallel-js.svg?style=flat-square)](https://www.npmjs.com/package/@parallelmarkets/parallel-js)
 
 Use the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) as an ES module.
 
@@ -9,13 +9,13 @@ Use the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/
 Use `npm` to install the Parallel JS SDK module:
 
 ```sh
-npm install @parallelmarkets/overlay-loader
+npm install @parallelmarkets/parallel-js
 ```
 
 ## Usage
 
 ```js
-import { loadParallel } from '@parallelmarkets/overlay-loader'
+import { loadParallel } from '@parallelmarkets/parallel-js'
 
 # load the parallel library with the given configuration information
 const parallel = await loadParallel({ client_id: '123', environment: 'demo' })

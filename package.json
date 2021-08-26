@@ -1,5 +1,5 @@
 {
-  "name": "@parallelmarkets/overlay-loader",
+  "name": "@parallelmarkets/parallel-js",
   "version": "0.0.1",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "main": "dist/parallel.js",

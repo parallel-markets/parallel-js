@@ -1,4 +1,4 @@
-import { loadParallel } from '@parallelmarkets/overlay-loader'
+import { loadParallel } from '@parallelmarkets/parallel-js'
 
 (async () => {
   const Parallel = await loadParallel({ client_id: '123', environment: 'demo', verbose: true })

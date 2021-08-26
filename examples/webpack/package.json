@@ -31,6 +31,6 @@
     "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
-    "@parallelmarkets/overlay-loader": "link:../.."
+    "@parallelmarkets/parallel-js": "link:../.."
   }
 }

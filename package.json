@@ -1,0 +1,36 @@
+{
+  "name": "@parallelmarkets/overlay-loader",
+  "version": "0.0.1",
+  "description": "ParallelMarkets.com JavaScript SDK loading utility",
+  "main": "dist/parallel.js",
+  "module": "dist/parallel.esm.js",
+  "jsnext:main": "dist/parallel.esm.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"
+  },
+  "keywords": [
+    "ParallelMarkets"
+  ],
+  "author": "Parallel Markets (https://parallelmarkets.com)",
+  "license": "MIT",
+  "homepage": "https://developer.parallelmarkets.com/docs/javascript",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  }
+}

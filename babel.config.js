@@ -1,7 +1,8 @@
-const isEnvTest = process.env.NODE_ENV === 'test'
+module.exports = function (api) {
+  const isEnvTest = process.env.NODE_ENV === 'test'
+  api.cache(false)
 
-module.exports = {
-  presets: [
+  const presets = [
     'react-app',
     [
       '@babel/preset-env',
@@ -11,10 +12,16 @@ module.exports = {
         modules: isEnvTest ? 'commonjs' : 'auto',
       },
     ],
-  ],
-  plugins: [
+  ]
+
+  const plugins = [
     ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
     ['@babel/plugin-proposal-private-methods', { loose: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
-  ],
+  ]
+
+  return {
+    presets,
+    plugins,
+  }
 }

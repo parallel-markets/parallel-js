@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const path = require('path')
 const env = process.env.NODE_ENV || 'development'
 
@@ -14,9 +13,6 @@ module.exports = [
           exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
-            options: {
-              sourceMap: true,
-            },
           },
         },
       ],
@@ -43,9 +39,6 @@ module.exports = [
           exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
-            options: {
-              sourceMap: true,
-            },
           },
         },
       ],
@@ -72,9 +65,6 @@ module.exports = [
           exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
-            options: {
-              sourceMap: true,
-            },
           },
         },
       ],
@@ -83,10 +73,7 @@ module.exports = [
       outputModule: true,
     },
     output: {
-      path: path.resolve(
-        __dirname,
-        './packages/parallel-react/dist/parallel-react.js'
-      ),
+      path: path.resolve(__dirname, './packages/parallel-react/dist'),
       filename: 'parallel-react.esm.js',
       library: {
         type: 'module',

@@ -22,7 +22,7 @@ module.exports = [
     },
     output: {
       path: path.resolve(__dirname, './packages/parallel-js/dist'),
-      filename: 'parallel.js',
+      filename: 'parallel-js.js',
       library: {
         type: 'commonjs',
       },
@@ -48,9 +48,35 @@ module.exports = [
     },
     output: {
       path: path.resolve(__dirname, './packages/parallel-js/dist'),
-      filename: 'parallel.esm.js',
+      filename: 'parallel-js.esm.js',
       library: {
         type: 'module',
+      },
+    },
+  },
+  {
+    target: ['web', 'es5'],
+    entry: './packages/parallel-react/src/index.js',
+    mode: env,
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'babel-loader',
+          },
+        },
+      ],
+    },
+    experiments: {
+      outputModule: true,
+    },
+    output: {
+      path: path.resolve(__dirname, './packages/parallel-react/dist'),
+      filename: 'parallel-react.js',
+      library: {
+        type: 'commonjs',
       },
     },
   },

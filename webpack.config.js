@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV || 'development'
 module.exports = [
   {
     target: ['web', 'es5'],
-    entry: './src/index.js',
+    entry: './packages/parallel-js/src/index.js',
     mode: env,
     module: {
       rules: [
@@ -25,7 +25,7 @@ module.exports = [
       outputModule: true,
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, './packages/parallel-js/dist'),
       filename: 'parallel.js',
       library: {
         type: 'commonjs',
@@ -34,7 +34,7 @@ module.exports = [
   },
   {
     target: ['web', 'es5'],
-    entry: './src/index.js',
+    entry: './packages/parallel-js/src/index.js',
     mode: env,
     module: {
       rules: [
@@ -54,40 +54,40 @@ module.exports = [
       outputModule: true,
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, './packages/parallel-js/dist'),
       filename: 'parallel.esm.js',
       library: {
         type: 'module',
       },
     },
   },
-  {
-    target: ['web', 'es5'],
-    entry: './src/react.js',
-    mode: env,
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /(node_modules)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        },
-      ],
-    },
-    experiments: {
-      outputModule: true,
-    },
-    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'react.esm.js',
-      library: {        
-        type: 'module',
-      },
-    },
-  },
+  // {
+  //   target: ['web', 'es5'],
+  //   entry: './src/react.js',
+  //   mode: env,
+  //   module: {
+  //     rules: [
+  //       {
+  //         test: /\.js$/,
+  //         exclude: /(node_modules)/,
+  //         use: {
+  //           loader: 'babel-loader',
+  //           options: {
+  //             sourceMap: true,
+  //           },
+  //         },
+  //       },
+  //     ],
+  //   },
+  //   experiments: {
+  //     outputModule: true,
+  //   },
+  //   output: {
+  //     path: path.resolve(__dirname, 'dist'),
+  //     filename: 'react.esm.js',
+  //     library: {
+  //       type: 'module',
+  //     },
+  //   },
+  // },
 ]

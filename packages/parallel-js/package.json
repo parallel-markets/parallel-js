@@ -1,17 +1,11 @@
 {
-  "name": "parallelmarkets",
+  "name": "@parallelmarkets/parallel-js",
   "version": "0.0.1",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
-  "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "lint": "NODE_ENV=test eslint ./packages && prettier -l ./packages"
-  },
-  "keywords": [
-    "ParallelMarkets"
-  ],
-  "author": "Parallel Markets (https://parallelmarkets.com)",
-  "license": "MIT",
-  "homepage": "https://developer.parallelmarkets.com/docs/javascript",
+  "main": "index.js",
+  "module": "dist/parallel.esm.js",
+  "jsnext:main": "dist/parallel.esm.js",
+  "source":"src/index.js",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0",
@@ -35,12 +29,18 @@
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0"
   },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
-  }
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "ParallelMarkets"
+  ],
+  "author": "Parallel Markets (https://parallelmarkets.com)",
+  "license": "MIT",
+  "homepage": "https://developer.parallelmarkets.com/docs/javascript",
 }

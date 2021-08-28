@@ -1,13 +1,13 @@
 {
-  "name": "@parallelmarkets/parallel-js",
+  "name": "@parallelmarkets/parallel-react",
   "version": "0.0.1",
-  "description": "ParallelMarkets.com JavaScript SDK loading utility",
+  "description": "ParallelMarkets.com React SDK",
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "main": "src/index.js",
-  "module": "dist/parallel.esm.js",
-  "jsnext:main": "dist/parallel.esm.js",
+  "module": "dist/parallel-react.esm.js",
+  "jsnext:main": "dist/parallel-react.esm.js",
   "source":"src/index.js",
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -27,6 +27,10 @@
     "react-dom": "^17.0.0",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack",

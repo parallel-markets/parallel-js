@@ -61,33 +61,36 @@ module.exports = [
       },
     },
   },
-  // {
-  //   target: ['web', 'es5'],
-  //   entry: './src/react.js',
-  //   mode: env,
-  //   module: {
-  //     rules: [
-  //       {
-  //         test: /\.js$/,
-  //         exclude: /(node_modules)/,
-  //         use: {
-  //           loader: 'babel-loader',
-  //           options: {
-  //             sourceMap: true,
-  //           },
-  //         },
-  //       },
-  //     ],
-  //   },
-  //   experiments: {
-  //     outputModule: true,
-  //   },
-  //   output: {
-  //     path: path.resolve(__dirname, 'dist'),
-  //     filename: 'react.esm.js',
-  //     library: {
-  //       type: 'module',
-  //     },
-  //   },
-  // },
+  {
+    target: ['web', 'es5'],
+    entry: './packages/parallel-react/src/index.js',
+    mode: env,
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        },
+      ],
+    },
+    experiments: {
+      outputModule: true,
+    },
+    output: {
+      path: path.resolve(
+        __dirname,
+        './packages/parallel-react/dist/parallel-react.js'
+      ),
+      filename: 'parallel-react.esm.js',
+      library: {
+        type: 'module',
+      },
+    },
+  },
 ]

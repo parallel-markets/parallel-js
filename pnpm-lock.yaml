@@ -46,17 +46,14 @@ importers:
       '@babel/eslint-parser': ^7.15.0
       '@babel/plugin-syntax-jsx': ^7.14.5
       '@babel/preset-env': ^7.15.0
+      '@rollup/plugin-babel': ^5.3.0
       babel-loader: ^8.2.2
-      babel-preset-react-app: ^10.0.0
       eslint: ^7.32.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ^2.24.1
       eslint-plugin-prettier: ^3.4.1
-      eslint-plugin-react: ^7.24.0
       jest: ^27.0.6
       prettier: ^2.3.2
-      react: ^17.0.0
-      react-dom: ^17.0.0
       webpack: ^5.51.1
       webpack-cli: ^4.8.0
     devDependencies:
@@ -64,17 +61,14 @@ importers:
       '@babel/eslint-parser': 7.15.0_@babel+core@7.15.0+eslint@7.32.0
       '@babel/plugin-syntax-jsx': 7.14.5_@babel+core@7.15.0
       '@babel/preset-env': 7.15.0_@babel+core@7.15.0
+      '@rollup/plugin-babel': 5.3.0_@babel+core@7.15.0
       babel-loader: 8.2.2_080b9887a086cbf3e61f158e7c92b566
-      babel-preset-react-app: 10.0.0
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
       eslint-plugin-import: 2.24.2_eslint@7.32.0
       eslint-plugin-prettier: 3.4.1_5a48a349ffec60f5257b5f148f5199c3
-      eslint-plugin-react: 7.24.0_eslint@7.32.0
       jest: 27.1.0
       prettier: 2.3.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
       webpack: 5.51.1_webpack-cli@4.8.0
       webpack-cli: 4.8.0_webpack@5.51.1
 

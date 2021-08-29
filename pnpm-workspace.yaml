@@ -1,3 +1,4 @@
 packages:
   - 'packages/parallel-js'
   - 'packages/parallel-react'
+  - '!examples/**'

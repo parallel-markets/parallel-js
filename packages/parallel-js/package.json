@@ -5,10 +5,8 @@
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
-  "main": "src/index.js",
-  "module": "dist/parallel.esm.js",
-  "jsnext:main": "dist/parallel.esm.js",
-  "source":"src/index.js",
+  "main": "dist/parallel-js.cjs.js",
+  "module": "dist/parallel-js.esm.js",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0",

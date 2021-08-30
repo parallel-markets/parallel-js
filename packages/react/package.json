@@ -11,10 +11,6 @@
     "build": "NODE_ENV=production rollup -c",
     "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"
   },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0",
@@ -36,8 +32,9 @@
     "prettier": "^2.3.2"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "@parallelmarkets/vanilla": "workspace:*",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -45,6 +42,9 @@
     },
     "react-dom": {
       "optional": true
+    },
+    "@parallelmarkets/vanilla": {
+      "optional": false
     }
   },
   "files": [

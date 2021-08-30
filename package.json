@@ -1,5 +1,6 @@
 {
   "name": "parallelmarkets",
+  "private": true,
   "version": "0.0.2",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {

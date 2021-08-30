@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-import { loadParallel } from '@parallelmarkets/parallel-js'
+import { loadParallel } from '@parallelmarkets/vanilla'
 import {
   ParallelProvider,
   useParallel,
   PassportButton,
-} from '@parallelmarkets/parallel-react'
+} from '@parallelmarkets/react'
 
 const AccreditationArea = () => {
   const { parallel, loginStatus } = useParallel()

@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
-    "build": "cd packages/parallel-js && pnpm build && cd ../parallel-react && pnpm build",
+    "build": "cd packages/vanilla && pnpm build && cd ../react && pnpm build",
     "lint": "NODE_ENV=test eslint ./packages && prettier -l ./packages"
   },
   "keywords": [

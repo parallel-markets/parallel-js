@@ -1,12 +1,12 @@
 {
-  "name": "@parallelmarkets/parallel-react",
+  "name": "@parallelmarkets/react",
   "version": "0.0.2",
   "description": "ParallelMarkets.com React SDK",
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
-  "main": "dist/parallel-react.cjs.js",
-  "module": "dist/parallel-react.esm.js",
+  "main": "dist/parallelmarkets-react.cjs.js",
+  "module": "dist/parallelmarkets-react.esm.js",
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
     "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"

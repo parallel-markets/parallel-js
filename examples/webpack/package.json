@@ -19,7 +19,7 @@
     ]
   },
   "dependencies": {
-    "@parallelmarkets/parallel-js": "workspace:*"
+    "@parallelmarkets/vanilla": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

@@ -1,5 +1,5 @@
 packages:
-  - 'packages/parallel-js'
-  - 'packages/parallel-react'
+  - 'packages/vanilla'
+  - 'packages/react'
   - 'examples/react-webpack'
   - 'examples/webpack'

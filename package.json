@@ -1,6 +1,6 @@
 {
   "name": "parallelmarkets",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
     "build": "cd packages/parallel-js && pnpm build && cd ../parallel-react && pnpm build",

@@ -18,6 +18,9 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@parallelmarkets/parallel-js": "workspace:*"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-transform-runtime": "^7.7.6",
@@ -29,8 +32,5 @@
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1"
-  },
-  "dependencies": {
-    "@parallelmarkets/parallel-js": "../../packages/parallel-js"
   }
 }

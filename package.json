@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
-    "build": "cd packages/parallel-js && NODE_ENV=production rollup -c && cd ../parallel-react && NODE_ENV=production rollup -c",
+    "build": "cd packages/parallel-js && pnpm build && cd ../parallel-react && pnpm build",
     "lint": "NODE_ENV=test eslint ./packages && prettier -l ./packages"
   },
   "keywords": [
@@ -13,8 +13,6 @@
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.0",
     "rollup": "^2.56.3"
   }
 }

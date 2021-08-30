@@ -4,12 +4,8 @@ importers:
 
   .:
     specifiers:
-      react: ^17.0.2
-      react-dom: ^17.0.0
       rollup: ^2.56.3
     devDependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
       rollup: 2.56.3
 
   examples/react-webpack:
@@ -19,15 +15,15 @@ importers:
       '@babel/plugin-transform-runtime': ^7.7.6
       '@babel/preset-env': ^7.7.7
       '@babel/runtime': ^7.7.7
-      '@parallelmarkets/parallel-js': link:../../packages/parallel-js
-      '@parallelmarkets/parallel-react': link:../../packages/parallel-react
+      '@parallelmarkets/parallel-js': workspace:*
+      '@parallelmarkets/parallel-react': workspace:*
       babel-loader: ^8.0.6
       babel-preset-env: ^1.7.0
       babel-preset-react-app: ^10.0.0
       eslint-plugin-react: ^7.24.0
       html-webpack-plugin: ^3.2.0
-      react: link:../../node_modules/react
-      react-dom: link:../../node_modules/react-dom
+      react: ^17.0.2
+      react-dom: ^17.0.2
       webpack: ^4.41.0
       webpack-cli: ^3.3.9
       webpack-dev-server: ^3.8.1
@@ -35,8 +31,8 @@ importers:
       '@babel/plugin-syntax-jsx': 7.14.5_@babel+core@7.15.0
       '@parallelmarkets/parallel-js': link:../../packages/parallel-js
       '@parallelmarkets/parallel-react': link:../../packages/parallel-react
-      react: link:../../node_modules/react
-      react-dom: link:../../node_modules/react-dom
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     devDependencies:
       '@babel/core': 7.15.0
       '@babel/plugin-transform-runtime': 7.12.1_@babel+core@7.15.0
@@ -57,7 +53,7 @@ importers:
       '@babel/plugin-transform-runtime': ^7.7.6
       '@babel/preset-env': ^7.7.7
       '@babel/runtime': ^7.7.7
-      '@parallelmarkets/parallel-js': ../../packages/parallel-js
+      '@parallelmarkets/parallel-js': workspace:*
       babel-loader: ^8.0.6
       babel-preset-env: ^1.7.0
       html-webpack-plugin: ^3.2.0
@@ -122,8 +118,11 @@ importers:
       eslint-plugin-react: ^7.24.0
       jest: ^27.0.6
       prettier: ^2.3.2
-      react: link:../../node_modules/react
-      react-dom: link:../../node_modules/react-dom
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     devDependencies:
       '@babel/core': 7.15.0
       '@babel/eslint-parser': 7.15.0_@babel+core@7.15.0+eslint@7.32.0
@@ -143,8 +142,6 @@ importers:
       eslint-plugin-react: 7.24.0_eslint@7.32.0
       jest: 27.1.0
       prettier: 2.3.2
-      react: link:../../node_modules/react
-      react-dom: link:../../node_modules/react-dom
 
 packages:
 
@@ -6839,7 +6836,6 @@ packages:
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: true
 
   /js-yaml/3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
@@ -7098,7 +7094,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: true
 
   /lower-case/1.1.4:
     resolution: {integrity: sha1-miyr0bno4K6ZOkv31YdcOcQujqw=}
@@ -7488,7 +7483,6 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /object-copy/0.1.0:
     resolution: {integrity: sha1-fn2Fi3gb18mRpBupde04EnVOmYw=}
@@ -8129,7 +8123,7 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
-    dev: true
+    dev: false
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -8145,7 +8139,7 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: true
+    dev: false
 
   /read-pkg-up/3.0.0:
     resolution: {integrity: sha1-PtSWaF26D4/hGNBpHcUfSh/5bwc=}
@@ -8476,7 +8470,7 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: true
+    dev: false
 
   /schema-utils/1.0.0:
     resolution: {integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==}

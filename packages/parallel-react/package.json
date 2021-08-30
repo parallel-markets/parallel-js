@@ -7,25 +7,31 @@
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "main": "dist/parallel-react.cjs.js",
   "module": "dist/parallel-react.esm.js",
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c",
+    "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-private-methods": "^7.14.5",
     "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
     "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "babel-preset-react-app": "^10.0.0",
-    "eslint-plugin-react": "^7.24.0",
-    "react": "link:../../node_modules/react",
-    "react-dom": "link:../../node_modules/react-dom",
-    "@babel/core": "^7.15.0",
-    "@babel/eslint-parser": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@rollup/plugin-babel": "^5.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.24.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2"
   },
@@ -40,10 +46,6 @@
     "react-dom": {
       "optional": true
     }
-  },
-  "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"
   },
   "files": [
     "dist",

@@ -1,6 +1,6 @@
 {
   "name": "@parallelmarkets/vanilla",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",

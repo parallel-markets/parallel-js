@@ -1,4 +1,4 @@
-import { loadParallel } from '@parallelmarkets/parallel-js'
+import { loadParallel } from '@parallelmarkets/vanilla'
 
 (async () => {
   const Parallel = await loadParallel({ client_id: '123', environment: 'demo', verbose: true })

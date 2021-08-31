@@ -1,13 +1,11 @@
 {
-  "name": "@parallelmarkets/parallel-js",
+  "name": "parallelmarkets",
+  "private": true,
   "version": "0.0.1",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
-  "main": "dist/parallel.js",
-  "module": "dist/parallel.esm.js",
-  "jsnext:main": "dist/parallel.esm.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "lint": "NODE_ENV=test eslint ./src && prettier -l ./src"
+    "build": "cd packages/vanilla && pnpm build && cd ../react && pnpm build",
+    "lint": "NODE_ENV=test eslint ./packages && prettier -l ./packages"
   },
   "keywords": [
     "ParallelMarkets"
@@ -15,39 +13,7 @@
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
-  "files": [
-    "dist",
-    "src"
-  ],
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/eslint-parser": "^7.15.0",
-    "@babel/plugin-syntax-jsx": "^7.14.5",
-    "@babel/preset-env": "^7.15.0",
-    "babel-preset-react-app": "^10.0.0",
-    "babel-loader": "^8.2.2",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.24.1",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-react": "^7.24.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
+    "rollup": "^2.56.3"
   }
 }

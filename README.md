@@ -1,6 +1,6 @@
 # Parallel Markets JavaScript SDK ES Module
 
-[![npm version](https://img.shields.io/npm/v/@parallelmarkets/parallel-js.svg?style=flat-square)](https://www.npmjs.com/package/@parallelmarkets/parallel-js)
+[![npm version](https://img.shields.io/npm/v/@parallelmarkets/vanilla.svg?style=flat-square)](https://www.npmjs.com/package/@parallelmarkets/vanilla)
 
 This library provides a loading wrapper for the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) as an ES module.
 
@@ -9,13 +9,13 @@ This library provides a loading wrapper for the [Parallel Markets JavaScript SDK
 Use `npm` to install the Parallel JS SDK module:
 
 ```sh
-$> npm install @parallelmarkets/parallel-js
+$> npm install @parallelmarkets/vanilla
 ```
 
 ## Usage
 
 ```js
-import { loadParallel } from '@parallelmarkets/parallel-js'
+import { loadParallel } from '@parallelmarkets/vanilla'
 
 // load the parallel library with the given configuration information
 const parallel = await loadParallel({ client_id: '123', environment: 'demo' })

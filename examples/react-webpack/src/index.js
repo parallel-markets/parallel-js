@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-import { loadParallel } from '@parallelmarkets/parallel-js'
-import { ParallelProvider, useParallel, PassportButton } from '@parallelmarkets/parallel-js/dist/react.esm'
+import { loadParallel } from '@parallelmarkets/vanilla'
+import {
+  ParallelProvider,
+  useParallel,
+  PassportButton,
+} from '@parallelmarkets/react'
 
 const AccreditationArea = () => {
-  const { parallel, loginStatus  } = useParallel()  
- 
+  const { parallel, loginStatus } = useParallel()
+
   useEffect(() => {
     if (!loginStatus) return
-    
+
     if (loginStatus.status === 'connected') {
       console.log('onLogin: ', loginStatus)
-    } else if(loginStatus.status === 'not_authorized') {
+    } else if (loginStatus.status === 'not_authorized') {
       console.log('onError: ', loginStatus)
     }
   }, [loginStatus])
@@ -25,7 +29,11 @@ const AccreditationArea = () => {
   )
 }
 
-const parallel = loadParallel({ client_id: '123', environment: 'demo', debug: true })
+const parallel = loadParallel({
+  client_id: '123',
+  environment: 'demo',
+  debug: true,
+})
 
 const App = () => (
   <ParallelProvider parallel={parallel}>
@@ -33,4 +41,4 @@ const App = () => (
   </ParallelProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById("main"))
+ReactDOM.render(<App />, document.getElementById('main'))

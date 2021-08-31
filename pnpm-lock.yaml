@@ -86,6 +86,7 @@ importers:
       '@rollup/plugin-babel': ^5.3.0
       '@rollup/plugin-commonjs': ^20.0.0
       '@rollup/plugin-node-resolve': ^13.0.4
+      '@rollup/plugin-url': ^6.1.0
       babel-preset-react-app: ^10.0.0
       eslint: ^7.32.0
       eslint-config-prettier: ^8.3.0
@@ -107,6 +108,7 @@ importers:
       '@rollup/plugin-babel': 5.3.0_@babel+core@7.15.0+rollup@2.56.3
       '@rollup/plugin-commonjs': 20.0.0_rollup@2.56.3
       '@rollup/plugin-node-resolve': 13.0.4_rollup@2.56.3
+      '@rollup/plugin-url': 6.1.0_rollup@2.56.3
       babel-preset-react-app: 10.0.0
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
@@ -2564,6 +2566,18 @@ packages:
       deepmerge: 4.2.2
       is-module: 1.0.0
       resolve: 1.20.0
+      rollup: 2.56.3
+    dev: true
+
+  /@rollup/plugin-url/6.1.0_rollup@2.56.3:
+    resolution: {integrity: sha512-FJNWBnBB7nLzbcaGmu1no+U/LlRR67TtgfRFP+VEKSrWlDTE6n9jMns/N4Q/VL6l4x6kTHQX4HQfwTcldaAfHQ==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0
+    dependencies:
+      '@rollup/pluginutils': 3.1.0_rollup@2.56.3
+      make-dir: 3.1.0
+      mime: 2.5.2
       rollup: 2.56.3
     dev: true
 

@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-
-const BUTTON_IMG =
-  'https://parallelmarkets.com/assets/images/login/medium-passport-button.svg'
+import ButtonImg from './medium-passport-button.svg'
 
 const ParallelContext = createContext({ parallel: null })
 
@@ -92,8 +90,8 @@ export const PassportButton = (props) => {
   }
 
   return (
-    <a rel="nofollow" onClick={handleClick}>
-      <img src={BUTTON_IMG} alt="Parallel Markets login button" {...props} />
+    <a rel="nofollow" onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <img src={ButtonImg} alt="Parallel Markets login button" {...props} />
     </a>
   )
 }

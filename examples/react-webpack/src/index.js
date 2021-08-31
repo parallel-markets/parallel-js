@@ -11,29 +11,25 @@ import {
 const AccreditationArea = () => {
   const { parallel, loginStatus } = useParallel()
 
-  useEffect(() => {
-    if (!loginStatus) return
+  // we may render before the loginStatus is available
+  if (!loginStatus) return null
 
-    if (loginStatus.status === 'connected') {
-      console.log('onLogin: ', loginStatus)
-    } else if (loginStatus.status === 'not_authorized') {
-      console.log('onError: ', loginStatus)
-    }
-  }, [loginStatus])
+  console.log(loginStatus)
 
   return (
     <>
-      <h1>{JSON.stringify(loginStatus || {})}</h1>
-      {loginStatus && loginStatus.status !== 'connected' && <PassportButton />}
+      <h1>Status: {loginStatus.status}</h1>
+      {loginStatus.status !== 'connected' ? (
+        <PassportButton />
+      ) : (
+        <button onClick={parallel.logout}>Log Out</button>
+      )}
     </>
   )
 }
 
-const parallel = loadParallel({
-  client_id: '123',
-  environment: 'demo',
-  debug: true,
-})
+// replace the client_id with your client id
+const parallel = loadParallel({ client_id: '123', environment: 'demo' })
 
 const App = () => (
   <ParallelProvider parallel={parallel}>

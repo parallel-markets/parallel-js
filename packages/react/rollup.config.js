@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { babel } from '@rollup/plugin-babel'
+import url from '@rollup/plugin-url'
 import pkg from './package.json'
 
 const config = {
@@ -11,6 +12,7 @@ const config = {
   ],
   plugins: [
     resolve(), // so Rollup can find `react, etc.`
+    url(),
     commonjs(), // so Rollup can convert `react and other CommonJS modules` to an ES module
     babel({ babelHelpers: 'runtime' }),
   ],

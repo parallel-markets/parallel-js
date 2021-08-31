@@ -32,7 +32,7 @@
     "prettier": "^2.3.2"
   },
   "peerDependencies": {
-    "@parallelmarkets/vanilla": "workspace:*",
+    "@parallelmarkets/vanilla": "^workspace:*",
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0"
   },

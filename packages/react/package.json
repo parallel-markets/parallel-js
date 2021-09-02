@@ -19,10 +19,11 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
     "@babel/plugin-syntax-jsx": "^7.14.5",
     "@babel/preset-env": "^7.15.0",
+    "@parallelmarkets/vanilla": "workspace:^",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
-    "@rollup/plugin-url": "^6.1.0",    
+    "@rollup/plugin-url": "^6.1.0",
     "babel-preset-react-app": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -35,7 +36,7 @@
     "react-dom": "^17.0.2"
   },
   "peerDependencies": {
-    "@parallelmarkets/vanilla": "^workspace:*",
+    "@parallelmarkets/vanilla": "workspace:^",
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0"
   },

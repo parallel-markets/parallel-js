@@ -50,16 +50,18 @@ const ProfileInfo = () => {
 
   useEffect(() => {
     // if the user is logged in, fetch profile info and set to state
-    if (loginStatus.status === 'connected') {
+    if (loginStatus?.status === 'connected') {
       getProfile().then(setProfileInfo)
     }
   }, [loginStatus])
 
-  return (profileInfo) ? <div>Hello ${profileInfo.firstName}!</div> : null
+  // once profileInfo is set it will be the same as the result of a call to the Profile API:
+  // https://developer.parallelmarkets.com/docs/server/profile-api#response-parameters
+  return profileInfo ? <div>Hello ${profileInfo.profile.first_name}!</div> : null
 }
 ```
 
-## Example
+## Full Example
 
 ```js
 import { loadParallel } from '@parallelmarkets/vanilla'

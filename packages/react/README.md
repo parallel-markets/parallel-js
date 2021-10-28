@@ -36,7 +36,7 @@ Then, anywhere inside your application you can call the hook `useParallel` to ge
  * `parallel`: This provides access to the [full JS SDK](https://developer.parallelmarkets.com/docs/javascript/sdk)
  * `loginStatus`: The current login status of the user. This is the result of a call to [`getLoginStatus()`](https://developer.parallelmarkets.com/docs/javascript/sdk), which may be null initially until a call to the API finishes.
  * `getProfile()`: A function that returns a `Promise` that will be resolved with profile information (from a call to the [Profile API](https://developer.parallelmarkets.com/docs/server/profile-api))
- * `getAccreditations()`: A function that returns a `Promise` that will be resolved with accreditation information (from a call to the [Identity API](https://developer.parallelmarkets.com/docs/server/accreditations-api))
+ * `getAccreditations()`: A function that returns a `Promise` that will be resolved with accreditation information (from a call to the [Accreditations API](https://developer.parallelmarkets.com/docs/server/accreditations-api))
  * `getIdentity()`: A function that returns a `Promise` that will be resolved with identity KYC/AML information (from a call to the [Identity API](https://developer.parallelmarkets.com/docs/server/identity-api))
  * `login()`: A shortcut to `parallel.login()`
  * `logout()`: A shortcut to `parallel.logout()`

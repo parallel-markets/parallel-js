@@ -14,6 +14,6 @@
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
-    "rollup": "^2.56.3"
+    "rollup": "^2.69.2"
   }
 }

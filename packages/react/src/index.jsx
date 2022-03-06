@@ -27,6 +27,21 @@ const wrapApiCall = (parallel, endpoint) => {
   }
 }
 
+const EmbeddedFlow = ({ parallel, ...props }) => {
+  if (!parallel) return null
+
+  if (
+    typeof parallel._config.embed_into_id === 'object' &&
+    'current' in parallel._config.embed_into_id
+  ) {
+    return <iframe {...props} ref={parallel._config.embed_into_id} />
+  }
+  console.error(
+    'You can only use EmbeddedFlow if you have set embed_into_id to a React Ref'
+  )
+  return null
+}
+
 export const useParallel = () => {
   const { parallel: promise } = useContext(ParallelContext)
   const [parallel, setParallel] = useState(null)
@@ -76,6 +91,7 @@ export const useParallel = () => {
     getIdentity: wrapApiCall(parallel, '/identity'),
     login: parallel.login,
     logout: parallel.logout,
+    EmbeddedFlow: (props) => <EmbeddedFlow {...props} parallel={parallel} />,
   }
 }
 

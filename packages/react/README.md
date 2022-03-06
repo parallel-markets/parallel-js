@@ -100,3 +100,57 @@ const App = () => (
 
 ReactDOM.render(<App />, document.getElementById('main'))
 ```
+
+## Embed Flow Type
+
+The "embed" flow flow type is a special case when using React.  The `embed_into_id` should be set to a [React Ref](https://reactjs.org/docs/refs-and-the-dom.html) instead of an element ID, and the `useParallel` hook provides a special `EmbeddedFlow` component for rendering the embedded flow.
+
+```js
+import { loadParallel } from '@parallelmarkets/vanilla'
+import { ParallelProvider, useParallel, PassportButton } from '@parallelmarkets/react'
+
+const AccreditationArea = () => {
+  // the parallel variable provides access to the full SDK available at
+  // https://developer.parallelmarkets.com/docs/javascript/sdk
+  const { parallel, loginStatus, EmbeddedFlow } = useParallel()
+
+  // we may render before the loginStatus is available
+  if (!loginStatus) return null
+
+  return (
+    <>
+      <h1>Status: {loginStatus.status}</h2>
+      {/* Only show the login button if the user hasn't logged in yet */}
+      {loginStatus.status !== 'connected' ? (
+        <>
+          <PassportButton />
+          {/* Show the embedded flow iframe - you'll probably want to style it */}
+          <div>
+            <EmbeddedFlow style={{ width: '100%', height: '300px' }} />
+          </div>
+        </>
+      ) : (
+        <button onClick={parallel.logout}>Log Out</button>
+      )}
+    </>
+  )
+}
+
+// start loading the parallel library with the given configuration information
+// the resulting promise will be passed to the ParallelProvider
+// For the embed flow type - set embed_into_id to a React Ref
+const parallel = loadParallel({
+  client_id: '123',
+  environment: 'demo',
+  flow_type: 'embed',
+  embed_into_id: React.createRef()
+})
+
+const App = () => (
+  <ParallelProvider parallel={parallel}>
+    <AccreditationArea />
+  </ParallelProvider>
+)
+
+ReactDOM.render(<App />, document.getElementById('main'))
+```

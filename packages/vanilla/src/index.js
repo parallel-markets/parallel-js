@@ -77,9 +77,11 @@ export const loadParallel = (config) => {
   loadCalled = true
 
   return loadScript().then((Parallel) => {
-    if (!Parallel) return null
+    if (!Parallel) return Promise.resolve(null)
 
-    Parallel.init(config)
-    return Parallel
+    return new Promise((resolve, reject) => {
+      const onInit = () => resolve(Parallel)
+      Parallel.init({...config, on_init: onInit})
+    })
   })
 }

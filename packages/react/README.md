@@ -40,6 +40,7 @@ Then, anywhere inside your application you can call the hook `useParallel` to ge
  * `getIdentity()`: A function that returns a `Promise` that will be resolved with identity KYC/AML information (from a call to the [Identity API](https://developer.parallelmarkets.com/docs/server/identity-api))
  * `login()`: A shortcut to `parallel.login()`
  * `logout()`: A shortcut to `parallel.logout()`
+ * `error`: Any error that resulted from getting the current login status on load
 
 For instance:
 
@@ -103,54 +104,8 @@ ReactDOM.render(<App />, document.getElementById('main'))
 
 ## Embed Flow Type
 
-The "embed" flow flow type is a special case when using React.  The `embed_into_id` should be set to a [React Ref](https://reactjs.org/docs/refs-and-the-dom.html) instead of an element ID, and the `useParallel` hook provides a special `EmbeddedFlow` component for rendering the embedded flow.
+While the "overlay" and "redirect" `flow_type` options will work fine with React, the "embed" option will not.  React recreates elements on render/re-render, causing any children iframe elements to be recreated, which results in reloading the URL in the `src` attribute. This causes a reload of the Parallel experience within the iframe, which is not an ideal experience for users.
 
-```js
-import { loadParallel } from '@parallelmarkets/vanilla'
-import { ParallelProvider, useParallel, PassportButton } from '@parallelmarkets/react'
+[This issue on React’s Github](https://github.com/facebook/react/issues/858) has more info about the effect - but any movement of the `iframe` element in the DOM (including recreating, as React does) will produce a re-fetching of the `src` URL of the `iframe`, resulting in a re-render of the Parallel experience.
 
-const AccreditationArea = () => {
-  // the parallel variable provides access to the full SDK available at
-  // https://developer.parallelmarkets.com/docs/javascript/sdk
-  const { parallel, loginStatus, EmbeddedFlow } = useParallel()
-
-  // we may render before the loginStatus is available
-  if (!loginStatus) return null
-
-  return (
-    <>
-      <h1>Status: {loginStatus.status}</h2>
-      {/* Only show the login button if the user hasn't logged in yet */}
-      {loginStatus.status !== 'connected' ? (
-        <>
-          <PassportButton />
-          {/* Show the embedded flow iframe - you'll probably want to style it */}
-          <div>
-            <EmbeddedFlow style={{ width: '100%', height: '300px' }} />
-          </div>
-        </>
-      ) : (
-        <button onClick={parallel.logout}>Log Out</button>
-      )}
-    </>
-  )
-}
-
-// start loading the parallel library with the given configuration information
-// the resulting promise will be passed to the ParallelProvider
-// For the embed flow type - set embed_into_id to a React Ref
-const parallel = loadParallel({
-  client_id: '123',
-  environment: 'demo',
-  flow_type: 'embed',
-  embed_into_id: React.createRef()
-})
-
-const App = () => (
-  <ParallelProvider parallel={parallel}>
-    <AccreditationArea />
-  </ParallelProvider>
-)
-
-ReactDOM.render(<App />, document.getElementById('main'))
-```
+We strongly recommend using the "overlay" `flow_type` if you're using React.

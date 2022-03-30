@@ -106,6 +106,6 @@ ReactDOM.render(<App />, document.getElementById('main'))
 
 While the "overlay" and "redirect" `flow_type` options will work fine with React, the "embed" option will not.  React recreates elements on render/re-render, causing any children iframe elements to be recreated, which results in reloading the URL in the `src` attribute. This causes a reload of the Parallel experience within the iframe, which is not an ideal experience for users.
 
-[This issue on React’s Github](https://github.com/facebook/react/issues/858) has more info about the effect - but any movement of the `iframe` element in the DOM (including recreating, as React does) will produce a re-fetching of the `src` URL of the `iframe`, resulting in a re-render of the Parallel experience.
+[This issue on React’s Github](https://github.com/facebook/react/issues/858) has more info about the effect. Any movement of the `iframe` element in the DOM (including recreating, as React does) will produce a re-fetching of the `src` URL of the `iframe`, resulting in a re-render of the Parallel experience.
 
 We strongly recommend using the "overlay" `flow_type` if you're using React.

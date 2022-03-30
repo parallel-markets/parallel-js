@@ -27,21 +27,6 @@ const wrapApiCall = (parallel, endpoint) => {
   }
 }
 
-const EmbeddedFlow = ({ parallel, ...props }) => {
-  if (!parallel) return null
-
-  if (
-    typeof parallel._config.embed_into_id === 'object' &&
-    'current' in parallel._config.embed_into_id
-  ) {
-    return <iframe {...props} ref={parallel._config.embed_into_id} />
-  }
-  console.error(
-    'You can only use EmbeddedFlow if you have set embed_into_id to a React Ref'
-  )
-  return null
-}
-
 export const useParallel = () => {
   const { parallel: promise } = useContext(ParallelContext)
   const [parallel, setParallel] = useState(null)
@@ -83,15 +68,22 @@ export const useParallel = () => {
   // if we haven't loaded, return empty object
   if (!parallel) return {}
 
+  // React recreates elements on render/re-render, causing any children iframe elements
+  // to reload their src attribute which causes a reload of the Parallel experience within
+  // the iframe - which is a bad experience for users
+  if (parallel?._config?.flow_type === 'embed') {
+    console.error('flow_type must be "redirect" or "overlay" when using React');
+  }
+
   return {
     parallel,
+    error,
     loginStatus,
     getProfile: wrapApiCall(parallel, '/me'),
     getAccreditations: wrapApiCall(parallel, '/accreditations'),
     getIdentity: wrapApiCall(parallel, '/identity'),
     login: parallel.login,
-    logout: parallel.logout,
-    EmbeddedFlow: (props) => <EmbeddedFlow {...props} parallel={parallel} />,
+    logout: parallel.logout
   }
 }
 

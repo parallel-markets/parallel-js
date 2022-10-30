@@ -5,6 +5,8 @@
 
 This library provides a loading wrapper for the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) with React components.
 
+For a quick start, check out [the example React app](https://github.com/parallel-markets/parallel-js/tree/master/examples/react-webpack).
+
 ## Installation
 
 Use `npm` to install the Parallel JS SDK module and this React library:
@@ -29,7 +31,8 @@ const App = () => (
   </ParallelProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById('main'))
+const root = createRoot(document.getElementById('main'))
+root.render(<App />)
 ```
 
 Then, anywhere inside your application you can call the hook `useParallel` to get access to a number of useful properties:
@@ -38,6 +41,7 @@ Then, anywhere inside your application you can call the hook `useParallel` to ge
  * `loginStatus`: The current login status of the user. This is the result of a call to [`getLoginStatus()`](https://developer.parallelmarkets.com/docs/javascript/sdk), which may be null initially until a call to the API finishes.
  * `getProfile()`: A function that returns a `Promise` that will be resolved with profile information (from a call to the [Profile API](https://developer.parallelmarkets.com/docs/server/profile-api))
  * `getAccreditations()`: A function that returns a `Promise` that will be resolved with accreditation information (from a call to the [Accreditations API](https://developer.parallelmarkets.com/docs/server/accreditations-api))
+ * `getBlockchain()`: A function that returns a `Promise` that will be resolved with blockchain information (from a call to the [Blockchain API](https://developer.parallelmarkets.com/docs/server/blockchain-api)) 
  * `getIdentity()`: A function that returns a `Promise` that will be resolved with identity KYC/AML information (from a call to the [Identity API](https://developer.parallelmarkets.com/docs/server/identity-api))
  * `login()`: A shortcut to `parallel.login()`
  * `logout()`: A shortcut to `parallel.logout()`
@@ -100,7 +104,8 @@ const App = () => (
   </ParallelProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById('main'))
+const root = createRoot(document.getElementById('main'))
+root.render(<App />)
 ```
 
 ## Embed Flow Type

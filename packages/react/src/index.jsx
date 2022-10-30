@@ -74,6 +74,7 @@ export const useParallel = () => {
     error,
     loginStatus,
     getProfile: wrapApiCall(parallel, '/me'),
+    getBlockchain: wrapApiCall(parallel, '/blockchain'),
     getAccreditations: wrapApiCall(parallel, '/accreditations'),
     getIdentity: wrapApiCall(parallel, '/identity'),
     login: parallel.login,

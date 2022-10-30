@@ -2,9 +2,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { babel } from '@rollup/plugin-babel'
 import url from '@rollup/plugin-url'
-import pkg from './package.json'
+import pkg from './package.json' assert { type: 'json' }
 
-const config = {
+export default {
   input: 'src/index.jsx',
   output: [
     { file: pkg.main, format: 'cjs' },
@@ -18,5 +18,3 @@ const config = {
   ],
   external: ['react', 'react-dom'],
 }
-
-export default config

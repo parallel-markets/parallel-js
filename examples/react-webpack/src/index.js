@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import { loadParallel } from '@parallelmarkets/vanilla'
 import {
@@ -29,7 +29,7 @@ const AccreditationArea = () => {
 }
 
 // replace the client_id with your client id
-const parallel = loadParallel({ client_id: '123', environment: 'demo' })
+const parallel = loadParallel({ client_id: 'VpbHft3b8bbKTv2LyaUVS', environment: 'demo', flow_type: 'overlay' })
 
 const App = () => (
   <ParallelProvider parallel={parallel}>
@@ -37,4 +37,6 @@ const App = () => (
   </ParallelProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById('main'))
+const app = document.getElementById('main')
+const root = createRoot(app)
+root.render(<App />)

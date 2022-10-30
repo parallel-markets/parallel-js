@@ -1,6 +1,5 @@
-module.exports = {
-  testEnvironment: 'jest-environment-jsdom',
-  moduleNameMapper: {
-    "^tests(.*)$": "<rootDir>/tests/$1"
-  }
+const config = {
+  projects: ['<rootDir>/packages/*/jest.config.js'],
 }
+
+module.exports = config

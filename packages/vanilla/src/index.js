@@ -53,7 +53,6 @@ const loadScript = () => {
       })
     } catch (error) {
       reject(error)
-      return
     }
   })
 
@@ -81,7 +80,7 @@ export const loadParallel = (config) => {
 
     return new Promise((resolve, reject) => {
       const onInit = () => resolve(Parallel)
-      Parallel.init({...config, on_init: onInit})
+      Parallel.init({ ...config, on_init: onInit })
     })
   })
 }

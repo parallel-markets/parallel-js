@@ -8,17 +8,25 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'prettier'],
+  extends: ['eslint:recommended', 'standard', 'plugin:react/recommended', 'prettier', 'plugin:react-hooks/recommended'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
   rules: {
+    'react-hooks/exhaustive-deps': OFF,
+    'react/prop-types': OFF,
     'node/no-callback-literal': OFF,
+    'n/no-callback-literal': OFF,
     'camelcase': OFF,
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'sort-vars': ERROR,
     'no-debugger': process.env.NODE_ENV === 'development' ? OFF : ERROR,
-  }
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 }

@@ -1,0 +1,60 @@
+name: ci
+on: push
+
+env:
+  NODE_VERSION: 18.6.0
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - uses: actions/cache@v3
+        id: node_modules-cache # id to use in retrieve action
+        with:
+          path: node_modules
+          key: code-quality-node-modules-cache-v0-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - uses: actions/cache@v3
+        id: pnpm-store-cache # id to use in retrieve action
+        with:
+          path: ~/.pnpm-store
+          key: code-quality-pnpm-store-cache-v0-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - run: pnpm install --no-optional --store-dir ~/.pnpm-store
+        if: steps.node_modules-cache.outputs.cache-hit != 'true' || steps.pnpm-store-cache.outputs.cache-hit != 'true'
+
+      - run: pnpm lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - uses: actions/cache@v3
+        id: node_modules-cache # id to use in retrieve action
+        with:
+          path: node_modules
+          key: test-node-modules-cache-v0-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - uses: actions/cache@v3
+        id: pnpm-store-cache # id to use in retrieve action
+        with:
+          path: ~/.pnpm-store
+          key: test-pnpm-store-cache-v0-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - run: pnpm install --no-optional --store-dir ~/.pnpm-store
+        if: steps.node_modules-cache.outputs.cache-hit != 'true' || steps.pnpm-store-cache.outputs.cache-hit != 'true'
+
+      - run: pnpm test

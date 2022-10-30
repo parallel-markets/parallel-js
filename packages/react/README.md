@@ -1,5 +1,6 @@
 # Parallel Markets JavaScript React Components
 
+![CI Status](https://github.com/parallel-markets/parallel-js/workflows/ci/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@parallelmarkets/react.svg?style=flat-square)](https://www.npmjs.com/package/@parallelmarkets/react)
 
 This library provides a loading wrapper for the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) with React components.

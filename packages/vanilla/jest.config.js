@@ -2,7 +2,8 @@ const config = {
   verbose: true,
   displayName: 'vanilla',
   rootDir: '../..',
-  roots: ['packages/vanilla']  
+  roots: ['packages/vanilla'],
+  testEnvironment: 'jsdom'
 }
 
 module.exports = config

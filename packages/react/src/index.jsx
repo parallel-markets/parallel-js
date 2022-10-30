@@ -12,11 +12,7 @@ export const ParallelProvider = ({ parallel, children, ...props }) => {
 }
 
 const isPromise = (thing) => {
-  return (
-    thing !== null &&
-    typeof thing === 'object' &&
-    typeof thing.then === 'function'
-  )
+  return thing !== null && typeof thing === 'object' && typeof thing.then === 'function'
 }
 
 const wrapApiCall = (parallel, endpoint) => {
@@ -59,9 +55,7 @@ export const useParallel = () => {
   }, [parallel])
 
   if (!isPromise(promise)) {
-    console.warn(
-      'You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper'
-    )
+    console.warn('You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper')
     return {}
   }
 
@@ -98,8 +92,8 @@ export const PassportButton = (props) => {
   }
 
   return (
-    <a rel="nofollow" onClick={handleClick} style={{ cursor: 'pointer' }}>
-      <img src={ButtonImg} alt="Parallel Markets login button" {...props} />
+    <a role='button' rel='nofollow' onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <img src={ButtonImg} alt='Parallel Markets login button' {...props} />
     </a>
   )
 }

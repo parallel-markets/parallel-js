@@ -9,7 +9,8 @@
   "module": "dist/parallelmarkets-react.esm.js",
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
-    "lint": "NODE_ENV=test eslint ./src/*.jsx && prettier -l ./src/*.jsx"
+    "lint": "NODE_ENV=test eslint ./src/*.jsx && prettier -l ./src/*.jsx",
+    "test": "NODE_ENV=test jest"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -24,6 +25,8 @@
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-url": "^8.0.1",
+    "@testing-library/react": "^13.4.0",
+    "babel-jest": "^29.2.2",
     "babel-preset-react-app": "^10.0.1",
     "eslint": "^8.26.0",
     "eslint-config-standard": "^17.0.0",

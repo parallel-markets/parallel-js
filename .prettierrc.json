@@ -1,4 +1,15 @@
 {
+  "bracketSameLine": true,
+  "jsxSingleQuote": true,
+  "printWidth": 120,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*.yml", "*.yaml"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }

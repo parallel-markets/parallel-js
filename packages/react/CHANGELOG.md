@@ -4,8 +4,8 @@
 
 ### Enhancements
 
-  * Add explicit peer support for React ^18.0.0
-  * Remove test files from published package
+  * Add explicit peer support for React ^18.0.0 (#8)
+  * Remove test files from published package (#8)
 
 ## v0.0.6 (2022-10-31)
 

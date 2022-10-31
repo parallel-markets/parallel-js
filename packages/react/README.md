@@ -12,7 +12,7 @@ For a quick start, check out [the example React app](https://github.com/parallel
 Use `npm` to install the Parallel JS SDK module and this React library:
 
 ```sh
-$> npm install @parallelmarkets/vanilla @parallelmarkets/react
+$> npm install --save @parallelmarkets/react @parallelmarkets/vanilla
 ```
 
 ## Usage
@@ -23,7 +23,10 @@ The first step is to use the `loadParallel` function from the [@parallelmarkets/
 import { loadParallel } from '@parallelmarkets/vanilla'
 import { ParallelProvider } from '@parallelmarkets/react'
 
-const parallel = loadParallel({ client_id: '123', environment: 'demo' })
+// Start loading the parallel library with the given configuration information. Make sure
+// you call this outside of a component's render to avoid recreating a parallel object
+// on every render.
+const parallel = loadParallel({ client_id: '123', environment: 'demo', flow_type: 'overlay' })
 
 const App = () => (
   <ParallelProvider parallel={parallel}>

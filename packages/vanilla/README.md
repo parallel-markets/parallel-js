@@ -12,7 +12,7 @@ For a quick start, check out [the example app](https://github.com/parallel-marke
 Use `npm` to install the Parallel JS SDK module:
 
 ```sh
-$> npm install @parallelmarkets/vanilla
+$> npm install --save @parallelmarkets/vanilla
 ```
 
 ## Usage

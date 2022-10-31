@@ -27,6 +27,24 @@ const ProfileBox = () => {
   return <h3>{name}</h3>
 }
 
+const AccreditationBox = () => {
+  const { loginStatus, getAccreditations } = useParallel()
+  const [response, setResponse] = useState(null)
+
+  useEffect(() => {
+    // if the user is now connected, then fetch accreditation info
+    if (loginStatus?.status === 'connected') getAccreditations().then(setResponse)
+  }, [loginStatus])
+
+  if (!response) return null
+
+  if (response.accreditations.some(({ status }) => status === 'current')) {
+    return <div>You are accredited!</div>
+  } else {
+    return <div>You are not accredited :(</div>
+  }
+}
+
 const ConnectionArea = () => {
   const { parallel, loginStatus } = useParallel()
 
@@ -50,6 +68,7 @@ const ConnectionArea = () => {
           ))}
         </ul>
       </div>
+      {scopes.includes('accreditation_status') && <AccreditationBox />}
       <button onClick={parallel.logout}>Log Out</button>
     </>
   )

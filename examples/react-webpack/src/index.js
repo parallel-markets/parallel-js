@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { loadParallel } from '@parallelmarkets/vanilla'
-import { ParallelProvider, useParallel, PassportButton } from '@parallelmarkets/react'
+import { ParallelProvider, PassportButton, useParallel } from '@parallelmarkets/react'
 
 // replace the client_id with your client id
 const scopes = ['profile', 'accreditation_status']
@@ -19,13 +19,12 @@ const ProfileBox = () => {
 
   if (!profileResponse) return null
 
-  if (profileResponse.type === 'individual') {
-    const { profile: { first_name, last_name, email } } = profileResponse
-    return <h3>{first_name} {last_name} &lt;{email}&gt;</h3>
-  } else {
-    const { profile: { name } } = profileResponse
-    return <h3>{name} (business)</h3>
-  }
+  const { profile } = profileResponse
+  const name =
+    profileResponse.type === 'individual'
+      ? `${profile.first_name} ${profile.last_name} <${profile.email}>`
+      : `${profile.name} (business)`
+  return <h3>{name}</h3>
 }
 
 const ConnectionArea = () => {
@@ -41,10 +40,14 @@ const ConnectionArea = () => {
     <>
       <h2>Connection successful!</h2>
       <ProfileBox />
-      <div style={{ padding: '15px', margin: '15px', backgroundColor: '#eee', overflow: 'wrap', overflowWrap: 'break-word' }}>
+      <div id='response-details'>
         <h3>Authentication Response Parameters:</h3>
         <ul>
-          {Object.entries(loginStatus.authResponse).map(([key, value], i) => <li key={i}><b>{key}:</b> {value}</li>)}
+          {Object.entries(loginStatus.authResponse).map(([key, value], i) => (
+            <li key={i}>
+              <b>{key}:</b> {value}
+            </li>
+          ))}
         </ul>
       </div>
       <button onClick={parallel.logout}>Log Out</button>

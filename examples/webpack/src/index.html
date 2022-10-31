@@ -3,13 +3,23 @@
   <head>
     <meta name="viewport" content="width=device-width" />
     <title>Parallel JS SDK Module - Webpack</title>
-    <style>body { margin: 20px; }</style>
+    <style>
+      body,
+      #message,
+      #authResponse {
+        margin: 20px;
+      }
+    </style>
   </head>
   <body>
+    <!-- any element with this class will get a button -->
+    <div class="parallel-login-button"></div>
+
     <!-- a space for messaging -->
     <div id="message"></div>
 
-    <!-- any element with this class will get a button -->
-    <div class="parallel-login-button"></div>
+    <textarea id="authResponse" rows="10" cols="160" disabled>
+      After you connect, authentication data will be shown here.
+    </textarea>
   </body>
 </html>

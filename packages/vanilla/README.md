@@ -1,15 +1,18 @@
 # Parallel Markets JavaScript SDK ES Module
 
+![CI Status](https://github.com/parallel-markets/parallel-js/workflows/ci/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@parallelmarkets/vanilla.svg?style=flat-square)](https://www.npmjs.com/package/@parallelmarkets/vanilla)
 
 This library provides a loading wrapper for the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) as an ES module.
+
+For a quick start, check out [the example app](https://github.com/parallel-markets/parallel-js/tree/master/examples/webpack).
 
 ## Installation
 
 Use `npm` to install the Parallel JS SDK module:
 
 ```sh
-$> npm install @parallelmarkets/vanilla
+$> npm install --save @parallelmarkets/vanilla
 ```
 
 ## Usage

@@ -1,5 +1,5 @@
 # Simple Async Loader
-This example uses webpack to build a simple page that displays the Parallel button.
+This example uses webpack to build a simple page that displays the Parallel button using the [@parallelmarkets/vanilla](https://www.npmjs.com/package/@parallelmarkets/vanilla) library.
 
 ## Building the Example
 First, [install pnpm](https://pnpm.io/installation).  Then run:

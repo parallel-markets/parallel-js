@@ -9,10 +9,7 @@ const addScript = () => {
   script.src = V1_URL
 
   const headOrBody = document.head || document.body
-  if (!headOrBody)
-    throw new Error(
-      'Parallel JS cannot be added to page with no <head/> or <body/> element'
-    )
+  if (!headOrBody) throw new Error('Parallel JS cannot be added to page with no <head/> or <body/> element')
 
   headOrBody.appendChild(script)
   return script
@@ -53,7 +50,6 @@ const loadScript = () => {
       })
     } catch (error) {
       reject(error)
-      return
     }
   })
 
@@ -81,7 +77,7 @@ export const loadParallel = (config) => {
 
     return new Promise((resolve, reject) => {
       const onInit = () => resolve(Parallel)
-      Parallel.init({...config, on_init: onInit})
+      Parallel.init({ ...config, on_init: onInit })
     })
   })
 }

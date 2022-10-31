@@ -1,5 +1,7 @@
 # Parallel Markets JavaScript Modules
 
+![CI Status](https://github.com/parallel-markets/parallel-js/workflows/ci/badge.svg)
+
 This repo contains a few packages to make integration with the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) as easy as possible.
 
 If you'd just like to load our SDK via a `<script>` tag, then the starter example on [developer.parallelmarkets.com](https://developer.parallelmarkets.com/docs/javascript) is the easiest way to get started.

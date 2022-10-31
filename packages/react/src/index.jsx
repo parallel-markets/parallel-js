@@ -12,11 +12,7 @@ export const ParallelProvider = ({ parallel, children, ...props }) => {
 }
 
 const isPromise = (thing) => {
-  return (
-    thing !== null &&
-    typeof thing === 'object' &&
-    typeof thing.then === 'function'
-  )
+  return thing !== null && typeof thing === 'object' && typeof thing.then === 'function'
 }
 
 const wrapApiCall = (parallel, endpoint) => {
@@ -33,16 +29,9 @@ export const useParallel = () => {
   const [loginStatus, setLoginStatus] = useState(null)
   const [error, setError] = useState(null)
 
-  if (!isPromise(promise)) {
-    console.warn(
-      'You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper'
-    )
-    return {}
-  }
-
   // on first mount, get and then set the parallel lib
   useEffect(() => {
-    promise.then(setParallel)
+    if (isPromise(promise)) promise.then(setParallel)
   }, [])
 
   const handleLoginStatus = (result) => {
@@ -52,7 +41,7 @@ export const useParallel = () => {
   }
 
   useEffect(() => {
-    if (!parallel) return
+    if (!parallel || !isPromise(promise)) return
 
     // fire a request to check status if we don't yet know what it is
     if (!loginStatus) parallel.getLoginStatus(handleLoginStatus)
@@ -65,6 +54,11 @@ export const useParallel = () => {
     }
   }, [parallel])
 
+  if (!isPromise(promise)) {
+    console.warn('You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper')
+    return {}
+  }
+
   // if we haven't loaded, return empty object
   if (!parallel) return {}
 
@@ -72,7 +66,7 @@ export const useParallel = () => {
   // to reload their src attribute which causes a reload of the Parallel experience within
   // the iframe - which is a bad experience for users
   if (parallel?._config?.flow_type === 'embed') {
-    console.error('flow_type must be "redirect" or "overlay" when using React');
+    console.error('flow_type must be "redirect" or "overlay" when using React')
   }
 
   return {
@@ -80,10 +74,11 @@ export const useParallel = () => {
     error,
     loginStatus,
     getProfile: wrapApiCall(parallel, '/me'),
+    getBlockchain: wrapApiCall(parallel, '/blockchain'),
     getAccreditations: wrapApiCall(parallel, '/accreditations'),
     getIdentity: wrapApiCall(parallel, '/identity'),
     login: parallel.login,
-    logout: parallel.logout
+    logout: parallel.logout,
   }
 }
 
@@ -98,8 +93,8 @@ export const PassportButton = (props) => {
   }
 
   return (
-    <a rel="nofollow" onClick={handleClick} style={{ cursor: 'pointer' }}>
-      <img src={ButtonImg} alt="Parallel Markets login button" {...props} />
+    <a role='button' rel='nofollow' onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <img src={ButtonImg} alt='Parallel Markets login button' {...props} />
     </a>
   )
 }

@@ -30,7 +30,7 @@
   },
   "files": [
     "dist",
-    "src"
+    "src/*.js"
   ],
   "keywords": [
     "ParallelMarkets"

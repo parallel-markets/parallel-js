@@ -1,6 +1,6 @@
 {
   "name": "@parallelmarkets/react",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "ParallelMarkets.com React SDK",
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",
@@ -40,8 +40,8 @@
   },
   "peerDependencies": {
     "@parallelmarkets/vanilla": "workspace:^",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -56,7 +56,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src/*.jsx",
+    "src/*.svg"
   ],
   "keywords": [
     "ParallelMarkets"

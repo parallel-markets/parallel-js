@@ -1,3 +1,5 @@
+import { LoadParallel, Parallel, ParallelConfig } from '../types'
+
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
 
 const findScript = () => {
@@ -15,7 +17,7 @@ const addScript = () => {
   return script
 }
 
-let parallelPromise = null
+let parallelPromise: Promise<Parallel | null> | null = null
 
 const loadScript = () => {
   // Load parallel script at most once
@@ -64,7 +66,7 @@ Promise.resolve()
 
 let loadCalled = false
 
-export const loadParallel = (config) => {
+export const loadParallel: LoadParallel = (config: ParallelConfig) => {
   if (loadCalled) {
     const error = new Error('You cannot call loadParallel more than once')
     return Promise.reject(error)
@@ -75,7 +77,7 @@ export const loadParallel = (config) => {
   return loadScript().then((Parallel) => {
     if (!Parallel) return Promise.resolve(null)
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const onInit = () => resolve(Parallel)
       Parallel.init({ ...config, on_init: onInit })
     })

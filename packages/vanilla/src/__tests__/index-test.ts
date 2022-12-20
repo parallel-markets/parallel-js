@@ -1,5 +1,5 @@
 import { loadParallel } from '../index'
-import { ParallelConfig } from '../../types'
+import { ParallelConfig } from '../types'
 
 declare global {
   interface Window {
@@ -7,6 +7,7 @@ declare global {
   }
 }
 
+// TODO: fill out Parallel object to conform to type in ./types
 global.window.Parallel = {
   get _config() {
     return window.config
@@ -15,7 +16,7 @@ global.window.Parallel = {
     window.config = params
     on_init?.()
   },
-  login: () => null
+  login: () => null,
 }
 
 test('Configuration is set correctly', async () => {

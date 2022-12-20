@@ -1,4 +1,4 @@
-import { LoadParallel, Parallel, ParallelConfig } from '../types'
+import { Parallel, ParallelConfig } from './types'
 
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
 let parallelPromise: Promise<Parallel | null> | undefined
@@ -64,7 +64,7 @@ const loadScript = () => {
   return parallelPromise
 }
 
-export const loadParallel: LoadParallel = (config: ParallelConfig) => {
+export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> => {
   if (loadCalled) {
     const error = new Error('You cannot call loadParallel more than once')
     return Promise.reject(error)

@@ -7,7 +7,6 @@ declare global {
   }
 }
 
-// TODO: fill out Parallel object to conform to type in ./types
 global.window.Parallel = {
   get _config() {
     return window.config
@@ -16,7 +15,15 @@ global.window.Parallel = {
     window.config = params
     on_init?.()
   },
+  api: () => null,
   login: () => null,
+  logout: () => null,
+  subscribe: () => null,
+  showButton: () => null,
+  hideButton: () => null,
+  unsubscribe: () => null,
+  getLoginStatus: () => null,
+  subscribeWithButton: () => null,
 }
 
 test('Configuration is set correctly', async () => {

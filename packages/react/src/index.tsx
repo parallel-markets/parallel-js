@@ -1,9 +1,23 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, ImgHTMLAttributes, PropsWithChildren, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
-const ParallelContext = createContext({ parallel: null })
+// TODO: how should we share the Parallel type?
+// pnpm workspace link in package, then import from vanilla?
+import { loadParallel } from '../../vanilla/src'
+import type { AuthCallbackResult, Parallel } from '../../vanilla/src/types'
+// import type { Parallel } from '@parallelmarkets/vanilla'
 
-export const ParallelProvider = ({ parallel, children, ...props }) => {
+type LoadParallelPromise = ReturnType<typeof loadParallel>
+type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
+type ParallelContextValue = { parallel?: LoadParallelPromise }
+
+const ParallelContext = createContext<ParallelContextValue>({ parallel: undefined })
+
+type ParallelProviderProps = PropsWithChildren<{
+  parallel: LoadParallelPromise
+}>
+
+export const ParallelProvider = ({ parallel, children, ...props }: ParallelProviderProps) => {
   return (
     <ParallelContext.Provider value={{ parallel }} {...props}>
       {children}
@@ -11,37 +25,38 @@ export const ParallelProvider = ({ parallel, children, ...props }) => {
   )
 }
 
-const isPromise = (thing) => {
-  return thing !== null && typeof thing === 'object' && typeof thing.then === 'function'
+const isThenable = (thing: any): thing is Promise<any> => {
+  return typeof thing?.then === 'function'
 }
 
-const wrapApiCall = (parallel, endpoint) => {
+const wrapApiCall = (parallel: Parallel, endpoint: string) => {
   return () => {
     return new Promise((resolve, reject) => {
+      // TODO: fix Parallel['api'] type of remove reject option here
       parallel.api(endpoint, resolve, reject)
     })
   }
 }
 
 export const useParallel = () => {
-  const { parallel: promise } = useContext(ParallelContext)
-  const [parallel, setParallel] = useState(null)
+  const { parallel: parallelPromise } = useContext(ParallelContext)
+  const [parallel, setParallel] = useState<LoadParallelResult>(null)
   const [loginStatus, setLoginStatus] = useState(null)
   const [error, setError] = useState(null)
 
   // on first mount, get and then set the parallel lib
   useEffect(() => {
-    if (isPromise(promise)) promise.then(setParallel)
+    if (isThenable(parallelPromise)) parallelPromise.then(setParallel)
   }, [])
 
-  const handleLoginStatus = (result) => {
+  const handleLoginStatus = (result: AuthCallbackResult) => {
     // if there's an "error" key than an error occured
     setError(result.error ?? null)
     setLoginStatus(result)
   }
 
   useEffect(() => {
-    if (!parallel || !isPromise(promise)) return
+    if (!parallel || !isThenable(parallelPromise)) return
 
     // fire a request to check status if we don't yet know what it is
     if (!loginStatus) parallel.getLoginStatus(handleLoginStatus)
@@ -54,7 +69,7 @@ export const useParallel = () => {
     }
   }, [parallel])
 
-  if (!isPromise(promise)) {
+  if (!isThenable(parallelPromise)) {
     console.warn('You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper')
     return {}
   }
@@ -82,12 +97,12 @@ export const useParallel = () => {
   }
 }
 
-export const PassportButton = (props) => {
+export const PassportButton = (props: typeof HTMLImageElement) => {
   const { parallel } = useParallel()
 
   if (!parallel) return null
 
-  const handleClick = (e) => {
+  const handleClick = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     parallel.login()
   }

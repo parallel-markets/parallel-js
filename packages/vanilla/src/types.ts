@@ -6,7 +6,7 @@ type AuthResponse = {
   refresh_expires_in: number
 }
 
-type AuthCallbackResult = {
+export type AuthCallbackResult = {
   authResponse?: AuthResponse
   status: 'not_authorized' | 'unknown' | 'connected'
   error?: string

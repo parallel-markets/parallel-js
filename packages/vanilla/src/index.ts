@@ -9,11 +9,7 @@ let loadCalled = false
 const findScript = () => {
   const scriptNodes = document.querySelectorAll(`script[src^="${V1_URL}"]`)
 
-  if (scriptNodes.length > 0) {
-    return scriptNodes[0]
-  } else {
-    return undefined
-  }
+  return (scriptNodes.length > 0) ? scriptNodes[0] : undefined
 }
 
 const addScript = () => {

@@ -22,7 +22,8 @@ export interface ParallelConfig {
   scopes?: Array<string>
 }
 
-type AuthCallbackFunc = (result: AuthCallbackResult) => void
+type AuthSuccessCallbackFunc = (result: AuthCallbackResult) => void
+type AuthFailureCallbackFunc = (result: { error: unknown }) => void
 
 // TODO: implement this
 type ApiCallbackFunc = (response: Record<string, unknown>) => void
@@ -36,13 +37,13 @@ export interface Parallel {
   _config: ParallelConfig
   login: () => void
   logout: () => void
-  subscribeWithButton: (successFunc: AuthCallbackFunc, errorFunc: AuthCallbackFunc) => void
+  subscribeWithButton: (successFunc: AuthSuccessCallbackFunc, errorFunc: AuthFailureCallbackFunc) => void
   showButton: () => void
   hideButton: () => void
   api: (endpoint: string, callback: ApiCallbackFunc, errorback: ApiErrorbackFunc) => void
   subscribe: (event: SubscribeEvents, callback: EventHandler) => void
   unsubscribe: (event: SubscribeEvents, callback: EventHandler) => void
-  getLoginStatus: (callback: AuthCallbackFunc) => void
+  getLoginStatus: (callback: AuthSuccessCallbackFunc) => void
 }
 
 declare global {

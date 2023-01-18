@@ -26,10 +26,17 @@ const isThenable = (thing: any): thing is Promise<any> => {
   return typeof thing?.then === 'function'
 }
 
-const wrapApiCall = (parallel: Parallel, endpoint: string) => {
+// The Embed API works with callback functions. This wrapper converts them to promises.
+const promisifyApiCall = (parallel: Parallel, endpoint: string) => {
   return () => {
-    return new Promise((resolve, reject) => {
-      // TODO: fix Parallel['api'] type of remove reject option here
+    // This type is pretty nasty. It tells TS that the result of the Promise is of the type of the argument to the callback function of the API call.
+    // Working from the inside out:
+    // Parallel has an entry under 'api'
+    // It's a function and the second parameter is the success callback
+    // The callback itself is a function and its first parameter is the result
+    type ApiSuccessCallbackResult = Parameters<Parameters<Parallel['api']>[1]>[0]
+    // This promise resolves with the type of the API's Success Callback function's first Parameter
+    return new Promise<ApiSuccessCallbackResult>((resolve, reject) => {
       parallel.api(endpoint, resolve, reject)
     })
   }
@@ -85,10 +92,10 @@ export const useParallel = () => {
     parallel,
     error,
     loginStatus,
-    getProfile: wrapApiCall(parallel, '/me'),
-    getBlockchain: wrapApiCall(parallel, '/blockchain'),
-    getAccreditations: wrapApiCall(parallel, '/accreditations'),
-    getIdentity: wrapApiCall(parallel, '/identity'),
+    getProfile: promisifyApiCall(parallel, '/me'),
+    getBlockchain: promisifyApiCall(parallel, '/blockchain'),
+    getAccreditations: promisifyApiCall(parallel, '/accreditations'),
+    getIdentity: promisifyApiCall(parallel, '/identity'),
     login: parallel.login,
     logout: parallel.logout,
   }

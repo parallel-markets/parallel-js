@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type AuthResponse = {
   access_token: string
   token_type: 'bearer'
@@ -24,13 +25,11 @@ export interface ParallelConfig {
 type AuthCallbackFunc = (result: AuthCallbackResult) => void
 
 // TODO: implement this
-interface APIResponse {}
-
-type APICallbackFunc = (response: APIResponse) => void
+type ApiCallbackFunc = (response: Record<string, unknown>) => void
+type ApiErrorbackFunc = (reason: any) => void
 
 type SubscribeEvents = 'auth.login' | 'auth.logout' | 'auth.statusChange' | 'auth.authResponseChange'
-type EventResponse = any
-type EventHandler = (response?: EventResponse) => void
+type EventHandler = (response: any) => void
 
 export interface Parallel {
   init(options: ParallelConfig): void
@@ -40,7 +39,7 @@ export interface Parallel {
   subscribeWithButton: (successFunc: AuthCallbackFunc, errorFunc: AuthCallbackFunc) => void
   showButton: () => void
   hideButton: () => void
-  api: (endpoint: string, callback: APICallbackFunc) => void
+  api: (endpoint: string, callback: ApiCallbackFunc, errorback: ApiErrorbackFunc) => void
   subscribe: (event: SubscribeEvents, callback: EventHandler) => void
   unsubscribe: (event: SubscribeEvents, callback: EventHandler) => void
   getLoginStatus: (callback: AuthCallbackFunc) => void

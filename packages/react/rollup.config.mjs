@@ -1,20 +1,39 @@
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
 import { babel } from '@rollup/plugin-babel'
-import url from '@rollup/plugin-url'
 import pkg from './package.json' assert { type: 'json' }
+import image from '@rollup/plugin-image'
+import typescript from '@rollup/plugin-typescript'
 
-export default {
-  input: 'src/index.jsx',
-  output: [
-    { file: pkg.main, format: 'cjs' },
-    { file: pkg.module, format: 'esm' },
-  ],
-  plugins: [
-    resolve(), // so Rollup can find `react, etc.`
-    url(),
-    commonjs(), // so Rollup can convert `react and other CommonJS modules` to an ES module
-    babel({ babelHelpers: 'runtime' }),
-  ],
-  external: ['react', 'react-dom'],
-}
+const config = [
+  // config for CommonJS
+  {
+    input: 'src/index.tsx',
+    output: { file: pkg.main, format: 'cjs', generatedCode: 'es5' },
+    plugins: [
+      image(),
+      // run TS first
+      typescript({
+        tsconfig: './tsconfig.cjs.json', // this TS config checks types only, Babel compiles in the next plugin
+        exclude: ['**/*-test.ts'],
+      }),
+      // compile with Babel (see babel.config.js)
+      babel({ babelHelpers: 'inline', include: ['.ts'] }),
+    ],
+  },
+  // config for ES Modules
+  {
+    input: 'src/index.tsx',
+    output: { file: pkg.module, format: 'esm', generatedCode: 'es2015' },
+    plugins: [
+      image(),
+      // Run TS
+      typescript({
+        tsconfig: './tsconfig.esm.json', // TS-Config for ESM target
+        exclude: ['**/*-test.ts'],
+      }),
+      // Note that we don't run through Babel for the ESM build because TS in this library is very simple
+      // and does not use any feature not available in systems that support ESM.
+    ],
+  },
+]
+
+export default config

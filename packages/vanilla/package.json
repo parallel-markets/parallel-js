@@ -30,7 +30,8 @@
     "build": "NODE_ENV=production rollup -c",
     "lint": "NODE_ENV=test eslint ./src && prettier -l ./src",
     "test": "NODE_ENV=test jest",
-    "typecheck": "tsc"
+    "typecheck": "tsc --noEmit",
+    "watch": "pnpm typecheck --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

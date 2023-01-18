@@ -5,13 +5,33 @@
   "author": "Parallel Markets (https://parallelmarkets.com)",
   "license": "MIT",
   "homepage": "https://github.com/parallel-markets/parallel-js/tree/master/packages/react",
-  "main": "dist/parallelmarkets-react.cjs.js",
-  "module": "dist/parallelmarkets-react.esm.js",
+  "main": "./dist/parallelmarkets-react.cjs.js",
+  "module": "./dist/parallelmarkets-react.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/parallelmarkets-react.esm.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/parallelmarkets-react.cjs.js"
+      }
+    }
+  },
+  "files": [
+    "./dist/**/*"
+  ],
+  "keywords": [
+    "ParallelMarkets"
+  ],
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
     "lint": "NODE_ENV=test eslint ./src/*.jsx && prettier -l ./src/*.jsx",
     "test": "NODE_ENV=test jest",
-    "typecheck": "tsc --jsx react"
+    "typecheck": "tsc --noEmit",
+    "watch": "pnpm typecheck --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -24,8 +44,9 @@
     "@parallelmarkets/vanilla": "workspace:*",
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-image": "^3.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-url": "^8.0.1",
+    "@rollup/plugin-typescript": "^10.0.1",
     "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.24",
     "babel-jest": "^29.2.2",
@@ -39,6 +60,7 @@
     "jest": "^29.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tslib": "^2.4.1",
     "typescript": "^4.8.4"
   },
   "peerDependencies": {
@@ -56,13 +78,5 @@
     "@parallelmarkets/vanilla": {
       "optional": false
     }
-  },
-  "files": [
-    "dist",
-    "src/*.jsx",
-    "src/*.svg"
-  ],
-  "keywords": [
-    "ParallelMarkets"
-  ]
+  }
 }

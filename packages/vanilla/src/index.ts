@@ -1,5 +1,7 @@
 import { Parallel, ParallelConfig } from './types'
 
+export { Parallel, AuthCallbackResult } from './types'
+
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
 let parallelPromise: Promise<Parallel | null> | undefined
 let loadCalled = false

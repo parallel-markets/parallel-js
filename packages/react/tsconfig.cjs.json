@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "lib": ["ES5", "DOM"],
+    "lib": ["ES5", "DOM", "ES2015.Promise"],
     "target": "ES5",
     "module": "ESNext", // as required by the TS Rollup plugin, this has no effect on the emitted JS because Babel does the transpiling
     "moduleResolution": "Node",

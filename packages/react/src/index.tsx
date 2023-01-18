@@ -1,11 +1,8 @@
-import React, { createContext, ImgHTMLAttributes, PropsWithChildren, useContext, useEffect, useState } from 'react'
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
-// TODO: how should we share the Parallel type?
-// pnpm workspace link in package, then import from vanilla?
-import { loadParallel } from '../../vanilla/src'
-import type { AuthCallbackResult, Parallel } from '../../vanilla/src/types'
-// import type { Parallel } from '@parallelmarkets/vanilla'
+import { loadParallel } from '@parallelmarkets/vanilla'
+import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
@@ -41,8 +38,8 @@ const wrapApiCall = (parallel: Parallel, endpoint: string) => {
 export const useParallel = () => {
   const { parallel: parallelPromise } = useContext(ParallelContext)
   const [parallel, setParallel] = useState<LoadParallelResult>(null)
-  const [loginStatus, setLoginStatus] = useState(null)
-  const [error, setError] = useState(null)
+  const [loginStatus, setLoginStatus] = useState<AuthCallbackResult>()
+  const [error, setError] = useState<string>()
 
   // on first mount, get and then set the parallel lib
   useEffect(() => {
@@ -51,7 +48,7 @@ export const useParallel = () => {
 
   const handleLoginStatus = (result: AuthCallbackResult) => {
     // if there's an "error" key than an error occured
-    setError(result.error ?? null)
+    setError(result.error)
     setLoginStatus(result)
   }
 

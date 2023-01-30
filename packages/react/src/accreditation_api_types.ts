@@ -14,9 +14,10 @@ type AccreditationDocument = {
 type IndividualAccreditation = {
   id: string
   status: AccreditationStatus
-  expires_at: number
+  expires_at: number | null
   assertion_type: AccreditationAssertionKind
   created_at: number
+  certified_at: number | null
   first_name: string
   last_name: string
   documents: [AccreditationDocument]
@@ -26,29 +27,30 @@ type IndividualAccreditation = {
 type BusinessAccreditation = {
   id: string
   status: AccreditationStatus
-  expires_at: number
+  expires_at: number | null
   assertion_type: AccreditationAssertionKind
   created_at: number
+  certified_at: number | null
   name: string
   documents: [AccreditationDocument]
 }
 
 // https://developer.parallelmarkets.com/docs/server/accreditations-api
 
-type AccreditationsApiBase = {
+type AccreditationsResponseBase = {
   id: string
   user_id: string
   type: EntityKind
   indicated_unaccredited: number | null
   accreditations: [IndividualAccreditation | BusinessAccreditation]
 }
-type AccreditationsApiIndividual = AccreditationsApiBase & {
+type AccreditationsResponseIndividual = AccreditationsResponseBase & {
   type: 'individual'
   accreditations: [IndividualAccreditation]
 }
-type AccreditationsApiBusiness = AccreditationsApiBase & {
+type AccreditationsResponseBusiness = AccreditationsResponseBase & {
   type: 'business'
   accreditations: [BusinessAccreditation]
 }
 
-export type AccreditationsApi = AccreditationsApiIndividual | AccreditationsApiBusiness
+export type AccreditationsApiResponse = AccreditationsResponseIndividual | AccreditationsResponseBusiness

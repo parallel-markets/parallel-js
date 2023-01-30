@@ -3,9 +3,15 @@ import ButtonImg from './medium-passport-button.svg'
 
 import { loadParallel } from '@parallelmarkets/vanilla'
 import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
-import { AccreditationsApi } from './accreditation_api_types'
-import { ProfileApi } from './profile_api_types'
+import { AccreditationsApiResponse } from './accreditation_api_types'
+import { ProfileApiResponse } from './profile_api_types'
 import { BlockchainApi } from './blockchain_api_types'
+import { IdentityApiResponse } from './identity_api_types'
+
+export * from './accreditation_api_types'
+export * from './profile_api_types'
+export * from './blockchain_api_types'
+export * from './identity_api_types'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
@@ -52,7 +58,22 @@ const promisifyApiCall = <R extends ApiSuccessCallbackResult>(parallel: Parallel
   }
 }
 
-export const useParallel = () => {
+type Hook =
+  | { isLoaded: false }
+  | {
+      isLoaded: true
+      parallel: Parallel
+      error?: string
+      loginStatus?: AuthCallbackResult
+      getProfile: Promise<ProfileApiResponse>
+      getBlockchain: Promise<BlockchainApi>
+      getAccreditations: Promise<AccreditationsApiResponse>
+      getIdentity: Promise<IdentityApiResponse>
+      login: Parallel['login']
+      logout: Parallel['logout']
+    }
+
+export const useParallel = <Hook,>() => {
   const { parallel: parallelPromise } = useContext(ParallelContext)
   const [parallel, setParallel] = useState<LoadParallelResult>(null)
   const [loginStatus, setLoginStatus] = useState<AuthCallbackResult>()
@@ -64,7 +85,7 @@ export const useParallel = () => {
   }, [])
 
   const handleLoginStatus = (result: AuthCallbackResult) => {
-    // if there's an "error" key than an error occured
+    // if there's an "error" key than an error occurred
     setError(result.error)
     setLoginStatus(result)
   }
@@ -85,11 +106,16 @@ export const useParallel = () => {
 
   if (!isThenable(parallelPromise)) {
     console.warn('You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper')
-    return {}
+    return {
+      isLoaded: false,
+    }
   }
 
   // if we haven't loaded, return empty object
-  if (!parallel) return {}
+  if (!parallel)
+    return {
+      isLoaded: false,
+    }
 
   // React recreates elements on render/re-render, causing any children iframe elements
   // to reload their src attribute which causes a reload of the Parallel experience within
@@ -99,13 +125,14 @@ export const useParallel = () => {
   }
 
   return {
+    isLoaded: true,
     parallel,
     error,
     loginStatus,
-    getProfile: promisifyApiCall<ProfileApi>(parallel, '/me'),
+    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/me'),
     getBlockchain: promisifyApiCall<BlockchainApi>(parallel, '/blockchain'),
-    getAccreditations: promisifyApiCall<AccreditationsApi>(parallel, '/accreditations'),
-    getIdentity: promisifyApiCall(parallel, '/identity'),
+    getAccreditations: promisifyApiCall<AccreditationsApiResponse>(parallel, '/accreditations'),
+    getIdentity: promisifyApiCall<IdentityApiResponse>(parallel, '/identity'),
     login: parallel.login,
     logout: parallel.logout,
   }
@@ -118,7 +145,7 @@ export const PassportButton = (props: typeof HTMLImageElement) => {
 
   const handleClick = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    parallel.login()
+    parallel?.login()
   }
 
   return (

@@ -3,10 +3,20 @@ import ButtonImg from './medium-passport-button.svg'
 
 import { loadParallel } from '@parallelmarkets/vanilla'
 import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
+import { AccreditationsApi } from './accreditation_api_types'
+import { ProfileApi } from './profile_api_types'
+import { BlockchainApi } from './blockchain_api_types'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
 type ParallelContextValue = { parallel?: LoadParallelPromise }
+
+// This type is pretty nasty. It tells TS that the result of the Promise is of the type of the argument to the callback function of the API call.
+// Working from the inside out:
+// Parallel has an entry under 'api'
+// It's a function and the second parameter is the success callback
+// The callback itself is a function and its first parameter is the result
+type ApiSuccessCallbackResult = Parameters<Parameters<Parallel['api']>[1]>[0]
 
 const ParallelContext = createContext<ParallelContextValue>({ parallel: undefined })
 
@@ -27,17 +37,17 @@ const isThenable = (thing: any): thing is Promise<any> => {
 }
 
 // The Embed API works with callback functions. This wrapper converts them to promises.
-const promisifyApiCall = (parallel: Parallel, endpoint: string) => {
+const promisifyApiCall = <R extends ApiSuccessCallbackResult>(parallel: Parallel, endpoint: string) => {
   return () => {
-    // This type is pretty nasty. It tells TS that the result of the Promise is of the type of the argument to the callback function of the API call.
-    // Working from the inside out:
-    // Parallel has an entry under 'api'
-    // It's a function and the second parameter is the success callback
-    // The callback itself is a function and its first parameter is the result
-    type ApiSuccessCallbackResult = Parameters<Parameters<Parallel['api']>[1]>[0]
     // This promise resolves with the type of the API's Success Callback function's first Parameter
-    return new Promise<ApiSuccessCallbackResult>((resolve, reject) => {
-      parallel.api(endpoint, resolve, reject)
+    return new Promise<R>((resolve, reject) => {
+      parallel.api(
+        endpoint,
+        (result) => {
+          resolve(result as R)
+        },
+        reject
+      )
     })
   }
 }
@@ -92,9 +102,9 @@ export const useParallel = () => {
     parallel,
     error,
     loginStatus,
-    getProfile: promisifyApiCall(parallel, '/me'),
-    getBlockchain: promisifyApiCall(parallel, '/blockchain'),
-    getAccreditations: promisifyApiCall(parallel, '/accreditations'),
+    getProfile: promisifyApiCall<ProfileApi>(parallel, '/me'),
+    getBlockchain: promisifyApiCall<BlockchainApi>(parallel, '/blockchain'),
+    getAccreditations: promisifyApiCall<AccreditationsApi>(parallel, '/accreditations'),
     getIdentity: promisifyApiCall(parallel, '/identity'),
     login: parallel.login,
     logout: parallel.logout,

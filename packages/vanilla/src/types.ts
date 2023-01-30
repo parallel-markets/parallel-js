@@ -26,7 +26,7 @@ type AuthSuccessCallbackFunc = (result: AuthCallbackResult) => void
 type AuthFailureCallbackFunc = (result: { error: unknown }) => void
 
 // TODO: implement this
-type ApiCallbackFunc = (response: Record<string, unknown>) => void
+type ApiCallbackFunc = (response: Record<string, any>) => void
 type ApiErrorbackFunc = (reason: any) => void
 
 type SubscribeEvents = 'auth.login' | 'auth.logout' | 'auth.statusChange' | 'auth.authResponseChange'

@@ -1,11 +1,11 @@
 import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
-import { loadParallel } from '@parallelmarkets/vanilla'
+import { loadParallel, ParallelApiRecord } from '@parallelmarkets/vanilla'
 import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
 import { AccreditationsApiResponse } from './accreditation_api_types'
 import { ProfileApiResponse } from './profile_api_types'
-import { BlockchainApi } from './blockchain_api_types'
+import { BlockchainApiResponse } from './blockchain_api_types'
 import { IdentityApiResponse } from './identity_api_types'
 
 export * from './accreditation_api_types'
@@ -16,13 +16,6 @@ export * from './identity_api_types'
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
 type ParallelContextValue = { parallel?: LoadParallelPromise }
-
-// This type is pretty nasty. It tells TS that the result of the Promise is of the type of the argument to the callback function of the API call.
-// Working from the inside out:
-// Parallel has an entry under 'api'
-// It's a function and the second parameter is the success callback
-// The callback itself is a function and its first parameter is the result
-type ApiSuccessCallbackResult = Parameters<Parameters<Parallel['api']>[1]>[0]
 
 const ParallelContext = createContext<ParallelContextValue>({ parallel: undefined })
 
@@ -43,7 +36,7 @@ const isThenable = (thing: any): thing is Promise<any> => {
 }
 
 // The Embed API works with callback functions. This wrapper converts them to promises.
-const promisifyApiCall = <R extends ApiSuccessCallbackResult>(parallel: Parallel, endpoint: string) => {
+const promisifyApiCall = <R extends ParallelApiRecord>(parallel: Parallel, endpoint: string) => {
   return () => {
     // This promise resolves with the type of the API's Success Callback function's first Parameter
     return new Promise<R>((resolve, reject) => {
@@ -66,7 +59,7 @@ type Hook =
       error?: string
       loginStatus?: AuthCallbackResult
       getProfile: Promise<ProfileApiResponse>
-      getBlockchain: Promise<BlockchainApi>
+      getBlockchain: Promise<BlockchainApiResponse>
       getAccreditations: Promise<AccreditationsApiResponse>
       getIdentity: Promise<IdentityApiResponse>
       login: Parallel['login']
@@ -130,7 +123,7 @@ export const useParallel = <Hook,>() => {
     error,
     loginStatus,
     getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/me'),
-    getBlockchain: promisifyApiCall<BlockchainApi>(parallel, '/blockchain'),
+    getBlockchain: promisifyApiCall<BlockchainApiResponse>(parallel, '/blockchain'),
     getAccreditations: promisifyApiCall<AccreditationsApiResponse>(parallel, '/accreditations'),
     getIdentity: promisifyApiCall<IdentityApiResponse>(parallel, '/identity'),
     login: parallel.login,

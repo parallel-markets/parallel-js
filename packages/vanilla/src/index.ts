@@ -1,6 +1,6 @@
 import { Parallel, ParallelConfig } from './types'
 
-export { Parallel, AuthCallbackResult } from './types'
+export * from './types'
 
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
 let parallelPromise: Promise<Parallel | null> | undefined
@@ -9,7 +9,7 @@ let loadCalled = false
 const findScript = () => {
   const scriptNodes = document.querySelectorAll(`script[src^="${V1_URL}"]`)
 
-  return (scriptNodes.length > 0) ? scriptNodes[0] : undefined
+  return scriptNodes.length > 0 ? scriptNodes[0] : undefined
 }
 
 const addScript = () => {

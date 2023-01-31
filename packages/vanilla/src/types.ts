@@ -26,8 +26,9 @@ type AuthSuccessCallbackFunc = (result: AuthCallbackResult) => void
 type AuthFailureCallbackFunc = (result: { error: unknown }) => void
 
 // TODO: implement this
-type ApiCallbackFunc = (response: Record<string, any>) => void
-type ApiErrorbackFunc = (reason: any) => void
+export type ParallelApiRecord = Record<string, any>
+export type ParallelApiSuccessCallback = (response: ParallelApiRecord) => void
+export type ParallelApiErrorCallback = (reason: any) => void
 
 type SubscribeEvents = 'auth.login' | 'auth.logout' | 'auth.statusChange' | 'auth.authResponseChange'
 type EventHandler = (response: any) => void
@@ -40,7 +41,7 @@ export interface Parallel {
   subscribeWithButton: (successFunc: AuthSuccessCallbackFunc, errorFunc: AuthFailureCallbackFunc) => void
   showButton: () => void
   hideButton: () => void
-  api: (endpoint: string, callback: ApiCallbackFunc, errorback: ApiErrorbackFunc) => void
+  api: (endpoint: string, callback: ParallelApiSuccessCallback, errorback: ParallelApiErrorCallback) => void
   subscribe: (event: SubscribeEvents, callback: EventHandler) => void
   unsubscribe: (event: SubscribeEvents, callback: EventHandler) => void
   getLoginStatus: (callback: AuthSuccessCallbackFunc) => void

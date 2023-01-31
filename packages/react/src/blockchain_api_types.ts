@@ -20,7 +20,7 @@ type Wallet = {
 }
 
 // https://developer.parallelmarkets.com/docs/server/blockchain-api
-export type BlockchainApi = {
+export type BlockchainApiResponse = {
   id: string
   type: EntityKind
   user_id: string

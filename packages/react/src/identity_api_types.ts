@@ -115,6 +115,7 @@ type BeneficialOwnerBase = {
   id: string | null
   ownership_percent: number
 }
+
 type BeneficialOwnerIndividual = BeneficialOwnerBase & {
   type: 'individual'
   profile: IndividualProfile

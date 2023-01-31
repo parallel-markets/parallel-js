@@ -14,10 +14,7 @@ const ProfileBox = () => {
 
   useEffect(() => {
     // if the user is now connected, then fetch profile info
-    if (loginStatus?.status === 'connected')
-      getProfile?.().then((profile) => {
-        setProfileResponse(profile)
-      })
+    if (loginStatus?.status === 'connected') getProfile?.().then(setProfileResponse)
   }, [loginStatus])
 
   if (!profileResponse) return null

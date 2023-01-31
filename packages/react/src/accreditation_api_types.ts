@@ -44,10 +44,12 @@ type AccreditationsResponseBase = {
   indicated_unaccredited: number | null
   accreditations: [IndividualAccreditation | BusinessAccreditation]
 }
+
 type AccreditationsResponseIndividual = AccreditationsResponseBase & {
   type: 'individual'
   accreditations: [IndividualAccreditation]
 }
+
 type AccreditationsResponseBusiness = AccreditationsResponseBase & {
   type: 'business'
   accreditations: [BusinessAccreditation]

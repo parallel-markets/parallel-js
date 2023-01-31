@@ -1,5 +1,3 @@
-import { EntityKind } from './common_api_types'
-
 type AccreditationStatus = 'current' | 'pending' | 'submitter_pending' | 'third_party_pending' | 'expired' | 'rejected'
 type AccreditationAssertionKind = 'income' | 'net-worth' | 'evaluator-assertion' | 'professional-license'
 
@@ -40,7 +38,6 @@ type BusinessAccreditation = {
 type AccreditationsResponseBase = {
   id: string
   user_id: string
-  type: EntityKind
   indicated_unaccredited: number | null
   accreditations: [IndividualAccreditation | BusinessAccreditation]
 }

@@ -1,16 +1,24 @@
 // https://developer.parallelmarkets.com/docs/server/profile-api
 
-import { BusinessType, EntityKind } from './common_api_types'
+import { BusinessType } from './common_api_types'
 
-export type ProfileApiResponse = {
+export type ProfileApiBaseResponse = {
   id: string
-  type: EntityKind
-  profile: IndividualProfile | BusinessProfile
   user_id: string
   user_profile: IndividualProfile
   user_providing_for: 'self' | 'controlled-business' | 'other-individual'
   access_expires_at: string | null
   access_revoked_by: 'subject' | 'partner' | 'system' | null
+}
+
+type ProfileApiIndividualResponse = ProfileApiBaseResponse & {
+  type: 'individual'
+  profile: IndividualProfile
+}
+
+type ProfileApiBusinessResponse = ProfileApiBaseResponse & {
+  type: 'business'
+  profile: BusinessProfile
 }
 
 export type IndividualProfile = {
@@ -24,3 +32,5 @@ export type BusinessProfile = {
   business_type: BusinessType
   primary_contact: IndividualProfile | null
 }
+
+export type ProfileApiResponse = ProfileApiIndividualResponse | ProfileApiBusinessResponse

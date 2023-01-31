@@ -1,6 +1,6 @@
 // https://developer.parallelmarkets.com/docs/server/identity-api
 
-import { BusinessType, EntityKind, Location, UserSession } from './common_api_types'
+import { BusinessType, Location, UserSession } from './common_api_types'
 import { BusinessProfile, IndividualProfile } from './profile_api_types'
 
 type ConsistencyLevel = 'low' | 'medium' | 'high' | 'none'

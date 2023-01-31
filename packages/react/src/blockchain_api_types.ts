@@ -4,6 +4,7 @@ import { EntityKind } from './common_api_types'
 
 // https://developer.parallelmarkets.com/docs/server/data-structures#pid-token
 type PidTrait = 'accredited' | 'reg-s-us-person' | 'reg-s-non-us-person'
+
 type ParallelIdentityToken = {
   minted_at: string
   sanctioned_at: string | null

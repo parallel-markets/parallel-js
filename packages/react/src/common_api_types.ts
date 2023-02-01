@@ -12,6 +12,9 @@ export type Location = {
 
 export type UserSession = {
   maybe_anonymizing_proxy: boolean
+  country_code: string | null
+  region: string | null
+  city: string | null
 }
 
 export type BusinessType =

@@ -1,7 +1,7 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
+import React, { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
-import { loadParallel, ParallelApiRecord } from '@parallelmarkets/vanilla'
+import { ParallelApiRecord, loadParallel } from '@parallelmarkets/vanilla'
 import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
 import { AccreditationsApiResponse } from './accreditation_api_types'
 import { ProfileApiResponse } from './profile_api_types'
@@ -31,7 +31,8 @@ export const ParallelProvider = ({ parallel, children, ...props }: ParallelProvi
   )
 }
 
-const isThenable = (thing: any): thing is Promise<any> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isThenable = (thing: any): thing is PromiseLike<any> => {
   return typeof thing?.then === 'function'
 }
 
@@ -51,22 +52,7 @@ const promisifyApiCall = <R extends ParallelApiRecord>(parallel: Parallel, endpo
   }
 }
 
-type Hook =
-  | { isLoaded: false }
-  | {
-      isLoaded: true
-      parallel: Parallel
-      error?: string
-      loginStatus?: AuthCallbackResult
-      getProfile: Promise<ProfileApiResponse>
-      getBlockchain: Promise<BlockchainApiResponse>
-      getAccreditations: Promise<AccreditationsApiResponse>
-      getIdentity: Promise<IdentityApiResponse>
-      login: Parallel['login']
-      logout: Parallel['logout']
-    }
-
-export const useParallel = <Hook,>() => {
+export const useParallel = () => {
   const { parallel: parallelPromise } = useContext(ParallelContext)
   const [parallel, setParallel] = useState<LoadParallelResult>(null)
   const [loginStatus, setLoginStatus] = useState<AuthCallbackResult>()

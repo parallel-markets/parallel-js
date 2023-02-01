@@ -8,21 +8,37 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'standard', 'plugin:react/recommended', 'prettier', 'plugin:react-hooks/recommended'],
-  parser: '@babel/eslint-parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'standard',
+    'plugin:react/recommended',
+    'prettier',
+    'plugin:react-hooks/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
+  plugins: ['@typescript-eslint'],
   rules: {
     'react-hooks/exhaustive-deps': OFF,
     'react/prop-types': OFF,
     'node/no-callback-literal': OFF,
     'n/no-callback-literal': OFF,
-    'camelcase': OFF,
+    camelcase: OFF,
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'sort-vars': ERROR,
     'no-debugger': process.env.NODE_ENV === 'development' ? OFF : ERROR,
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn', // or "error"
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
   settings: {
     react: {

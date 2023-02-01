@@ -2,6 +2,18 @@
 
 import { BusinessType } from './common_api_types'
 
+export type IndividualProfile = {
+  email: string | null
+  first_name: string
+  last_name: string
+}
+
+export type BusinessProfile = {
+  name: string
+  business_type: BusinessType
+  primary_contact: IndividualProfile | null
+}
+
 export type ProfileApiBaseResponse = {
   id: string
   user_id: string
@@ -19,18 +31,6 @@ type ProfileApiIndividualResponse = ProfileApiBaseResponse & {
 type ProfileApiBusinessResponse = ProfileApiBaseResponse & {
   type: 'business'
   profile: BusinessProfile
-}
-
-export type IndividualProfile = {
-  email: string | null
-  first_name: string
-  last_name: string
-}
-
-export type BusinessProfile = {
-  name: string
-  business_type: BusinessType
-  primary_contact: IndividualProfile | null
 }
 
 export type ProfileApiResponse = ProfileApiIndividualResponse | ProfileApiBusinessResponse

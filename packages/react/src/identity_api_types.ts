@@ -6,6 +6,30 @@ import { BusinessProfile, IndividualProfile } from './profile_api_types'
 type ConsistencyLevel = 'low' | 'medium' | 'high' | 'none'
 type ValidityLevel = 'valid' | 'valid_maybe_expired' | 'expired' | 'unreadable'
 
+type ControlPerson = {
+  id: string | null
+  type: 'individual'
+  title: string
+  profile: IndividualProfile
+}
+
+type BeneficialOwnerBase = {
+  id: string | null
+  ownership_percent: number
+}
+
+type BeneficialOwnerIndividual = BeneficialOwnerBase & {
+  type: 'individual'
+  profile: IndividualProfile
+}
+
+type BeneficialOwnerBusiness = BeneficialOwnerBase & {
+  type: 'business'
+  profile: BusinessProfile
+}
+
+type BeneficialOwner = BeneficialOwnerIndividual | BeneficialOwnerBusiness
+
 type IndividualIdentityDetailsConsistencySummary = {
   address_id_match: boolean | null
   address_id_value: string | null
@@ -103,29 +127,5 @@ type BusinessIdentityDetails = {
   us_tax_id: string | null
   user_session: UserSession
 }
-
-type ControlPerson = {
-  id: string | null
-  type: 'individual'
-  title: string
-  profile: IndividualProfile
-}
-
-type BeneficialOwnerBase = {
-  id: string | null
-  ownership_percent: number
-}
-
-type BeneficialOwnerIndividual = BeneficialOwnerBase & {
-  type: 'individual'
-  profile: IndividualProfile
-}
-
-type BeneficialOwnerBusiness = BeneficialOwnerBase & {
-  type: 'business'
-  profile: BusinessProfile
-}
-
-type BeneficialOwner = BeneficialOwnerIndividual | BeneficialOwnerBusiness
 
 export type IdentityApiResponse = IndividualIdentityDetails | BusinessIdentityDetails

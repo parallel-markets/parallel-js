@@ -36,14 +36,14 @@ const isPromise = (thing: unknown): thing is PromiseLike<unknown> => {
 }
 
 // The Embed API works with callback functions. This wrapper converts them to promises.
-const promisifyApiCall = <R extends ParallelApiRecord>(parallel: Parallel, endpoint: string) => {
+const promisifyApiCall = <ResultType extends ParallelApiRecord>(parallel: Parallel, endpoint: string) => {
   return () => {
     // This promise resolves with the type of the API's Success Callback function's first Parameter
-    return new Promise<R>((resolve, reject) => {
+    return new Promise<ResultType>((resolve, reject) => {
       parallel.api(
         endpoint,
         (result) => {
-          resolve(result as R)
+          resolve(result as ResultType)
         },
         reject
       )

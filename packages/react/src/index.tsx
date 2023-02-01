@@ -31,9 +31,8 @@ export const ParallelProvider = ({ parallel, children, ...props }: ParallelProvi
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isThenable = (thing: any): thing is PromiseLike<any> => {
-  return typeof thing?.then === 'function'
+const isPromise = (thing: unknown): thing is PromiseLike<unknown> => {
+  return typeof (thing as PromiseLike<unknown>)?.then === 'function'
 }
 
 // The Embed API works with callback functions. This wrapper converts them to promises.
@@ -60,7 +59,7 @@ export const useParallel = () => {
 
   // on first mount, get and then set the parallel lib
   useEffect(() => {
-    if (isThenable(parallelPromise)) parallelPromise.then(setParallel)
+    if (isPromise(parallelPromise)) parallelPromise.then(setParallel)
   }, [])
 
   const handleLoginStatus = (result: AuthCallbackResult) => {
@@ -70,7 +69,7 @@ export const useParallel = () => {
   }
 
   useEffect(() => {
-    if (!parallel || !isThenable(parallelPromise)) return
+    if (!parallel || !isPromise(parallelPromise)) return
 
     // fire a request to check status if we don't yet know what it is
     if (!loginStatus) parallel.getLoginStatus(handleLoginStatus)
@@ -83,7 +82,7 @@ export const useParallel = () => {
     }
   }, [parallel])
 
-  if (!isThenable(parallelPromise)) {
+  if (!isPromise(parallelPromise)) {
     console.warn('You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper')
     return {
       isLoaded: false,

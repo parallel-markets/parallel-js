@@ -27,3 +27,5 @@ export type BusinessType =
   | 'Partnership LLC'
   | 'Partnership LP'
   | 'Family Office'
+  | 'Limited Liability Company'
+  | 'Limited Partnership'

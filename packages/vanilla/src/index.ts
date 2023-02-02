@@ -81,7 +81,7 @@ export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> =
   })
 }
 
-// Wait a tick and then try to load the script.  This is done
+// Wait a tick and then try to load the script. This is done
 // to load the SDK upon library import.
 Promise.resolve()
   .then(() => loadScript())

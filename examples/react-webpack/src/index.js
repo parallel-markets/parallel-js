@@ -14,7 +14,7 @@ const ProfileBox = () => {
 
   useEffect(() => {
     // if the user is now connected, then fetch profile info
-    if (loginStatus?.status === 'connected') getProfile().then(setProfileResponse)
+    if (loginStatus?.status === 'connected') getProfile?.().then(setProfileResponse)
   }, [loginStatus])
 
   if (!profileResponse) return null
@@ -33,7 +33,7 @@ const AccreditationBox = () => {
 
   useEffect(() => {
     // if the user is now connected, then fetch accreditation info
-    if (loginStatus?.status === 'connected') getAccreditations().then(setResponse)
+    if (loginStatus?.status === 'connected') getAccreditations?.().then(setResponse)
   }, [loginStatus])
 
   if (!response) return null

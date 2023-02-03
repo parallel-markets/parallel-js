@@ -1,11 +1,11 @@
 {
   "name": "parallelmarkets",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
-    "build": "cd packages/vanilla && pnpm build && cd ../react && pnpm build",
-    "lint": "NODE_ENV=test eslint --ext .jsx --ext .js examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
+    "build": "pnpm --parallel --filter '@parallelmarkets/*' build",
+    "lint": "NODE_ENV=test eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
     "test": "NODE_ENV=test jest"
   },
   "keywords": [

@@ -39,7 +39,7 @@ const run = async () => {
     scopes,
   })
 
-  parallel.subscribeWithButton((result) => authSuccess(result, parallel), authFailure)
+  parallel?.subscribeWithButton((result) => authSuccess(result, parallel), authFailure)
 }
 
 run()

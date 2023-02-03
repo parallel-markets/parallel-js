@@ -10,7 +10,7 @@ const ParallelMock = {
   unsubscribe: () => null,
 }
 
-const wrapRender = async (parallel, children) => {
+const wrapRender = async (parallel, _children) => {
   await act(async () => {
     await render(
       <ParallelProvider parallel={Promise.resolve(parallel)}>

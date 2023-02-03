@@ -1,7 +1,15 @@
+import { Parallel, ParallelConfig } from './types'
+
+export * from './types'
+
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
+let parallelPromise: Promise<Parallel | null> | undefined
+let loadCalled = false
 
 const findScript = () => {
-  return [...document.querySelectorAll(`script[src^="${V1_URL}"]`)][0] ?? null
+  const scriptNodes = document.querySelectorAll(`script[src^="${V1_URL}"]`)
+
+  return scriptNodes.length > 0 ? scriptNodes[0] : undefined
 }
 
 const addScript = () => {
@@ -15,11 +23,9 @@ const addScript = () => {
   return script
 }
 
-let parallelPromise = null
-
 const loadScript = () => {
   // Load parallel script at most once
-  if (parallelPromise !== null) return parallelPromise
+  if (parallelPromise !== undefined) return parallelPromise
 
   parallelPromise = new Promise((resolve, reject) => {
     // if we were imported on a server immediately return
@@ -56,15 +62,7 @@ const loadScript = () => {
   return parallelPromise
 }
 
-// Wait a tick and then try to load the script.  This is done
-// to load the SDK upon library import.
-Promise.resolve()
-  .then(() => loadScript())
-  .catch(console.warn)
-
-let loadCalled = false
-
-export const loadParallel = (config) => {
+export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> => {
   if (loadCalled) {
     const error = new Error('You cannot call loadParallel more than once')
     return Promise.reject(error)
@@ -75,9 +73,16 @@ export const loadParallel = (config) => {
   return loadScript().then((Parallel) => {
     if (!Parallel) return Promise.resolve(null)
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
+      // Resolve the initialized Parallel object upon init
       const onInit = () => resolve(Parallel)
       Parallel.init({ ...config, on_init: onInit })
     })
   })
 }
+
+// Wait a tick and then try to load the script. This is done
+// to load the SDK upon library import.
+Promise.resolve()
+  .then(() => loadScript())
+  .catch(console.warn)

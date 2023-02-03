@@ -1,9 +1,29 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
-const ParallelContext = createContext({ parallel: null })
+import { ParallelApiRecord, loadParallel } from '@parallelmarkets/vanilla'
+import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
+import { AccreditationsApiResponse } from './accreditation_api_types'
+import { ProfileApiResponse } from './profile_api_types'
+import { BlockchainApiResponse } from './blockchain_api_types'
+import { IdentityApiResponse } from './identity_api_types'
 
-export const ParallelProvider = ({ parallel, children, ...props }) => {
+export * from './accreditation_api_types'
+export * from './profile_api_types'
+export * from './blockchain_api_types'
+export * from './identity_api_types'
+
+type LoadParallelPromise = ReturnType<typeof loadParallel>
+type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
+type ParallelContextValue = { parallel?: LoadParallelPromise }
+
+const ParallelContext = createContext<ParallelContextValue>({ parallel: undefined })
+
+type ParallelProviderProps = PropsWithChildren<{
+  parallel: LoadParallelPromise
+}>
+
+export const ParallelProvider = ({ parallel, children, ...props }: ParallelProviderProps) => {
   return (
     <ParallelContext.Provider value={{ parallel }} {...props}>
       {children}
@@ -11,37 +31,45 @@ export const ParallelProvider = ({ parallel, children, ...props }) => {
   )
 }
 
-const isPromise = (thing) => {
-  return thing !== null && typeof thing === 'object' && typeof thing.then === 'function'
+const isPromise = (thing: unknown): thing is PromiseLike<unknown> => {
+  return typeof (thing as PromiseLike<unknown>)?.then === 'function'
 }
 
-const wrapApiCall = (parallel, endpoint) => {
+// The Embed API works with callback functions. This wrapper converts them to promises.
+const promisifyApiCall = <ResultType extends ParallelApiRecord>(parallel: Parallel, endpoint: string) => {
   return () => {
-    return new Promise((resolve, reject) => {
-      parallel.api(endpoint, resolve, reject)
+    // This promise resolves with the type of the API's Success Callback function's first Parameter
+    return new Promise<ResultType>((resolve, reject) => {
+      parallel.api(
+        endpoint,
+        (result) => {
+          resolve(result as ResultType)
+        },
+        reject
+      )
     })
   }
 }
 
 export const useParallel = () => {
-  const { parallel: promise } = useContext(ParallelContext)
-  const [parallel, setParallel] = useState(null)
-  const [loginStatus, setLoginStatus] = useState(null)
-  const [error, setError] = useState(null)
+  const { parallel: parallelPromise } = useContext(ParallelContext)
+  const [parallel, setParallel] = useState<LoadParallelResult>(null)
+  const [loginStatus, setLoginStatus] = useState<AuthCallbackResult>()
+  const [error, setError] = useState<string>()
 
   // on first mount, get and then set the parallel lib
   useEffect(() => {
-    if (isPromise(promise)) promise.then(setParallel)
+    if (isPromise(parallelPromise)) parallelPromise.then(setParallel)
   }, [])
 
-  const handleLoginStatus = (result) => {
-    // if there's an "error" key than an error occured
-    setError(result.error ?? null)
+  const handleLoginStatus = (result: AuthCallbackResult) => {
+    // if there's an "error" key than an error occurred
+    setError(result.error)
     setLoginStatus(result)
   }
 
   useEffect(() => {
-    if (!parallel || !isPromise(promise)) return
+    if (!parallel || !isPromise(parallelPromise)) return
 
     // fire a request to check status if we don't yet know what it is
     if (!loginStatus) parallel.getLoginStatus(handleLoginStatus)
@@ -54,13 +82,18 @@ export const useParallel = () => {
     }
   }, [parallel])
 
-  if (!isPromise(promise)) {
+  if (!isPromise(parallelPromise)) {
     console.warn('You must call loadParallel and place the result in a <ParallelProvider parallel={result}> wrapper')
-    return {}
+    return {
+      isLoaded: false,
+    }
   }
 
   // if we haven't loaded, return empty object
-  if (!parallel) return {}
+  if (!parallel)
+    return {
+      isLoaded: false,
+    }
 
   // React recreates elements on render/re-render, causing any children iframe elements
   // to reload their src attribute which causes a reload of the Parallel experience within
@@ -70,26 +103,27 @@ export const useParallel = () => {
   }
 
   return {
+    isLoaded: true,
     parallel,
     error,
     loginStatus,
-    getProfile: wrapApiCall(parallel, '/me'),
-    getBlockchain: wrapApiCall(parallel, '/blockchain'),
-    getAccreditations: wrapApiCall(parallel, '/accreditations'),
-    getIdentity: wrapApiCall(parallel, '/identity'),
+    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/me'),
+    getBlockchain: promisifyApiCall<BlockchainApiResponse>(parallel, '/blockchain'),
+    getAccreditations: promisifyApiCall<AccreditationsApiResponse>(parallel, '/accreditations'),
+    getIdentity: promisifyApiCall<IdentityApiResponse>(parallel, '/identity'),
     login: parallel.login,
     logout: parallel.logout,
   }
 }
 
-export const PassportButton = (props) => {
+export const PassportButton = (props: typeof HTMLImageElement) => {
   const { parallel } = useParallel()
 
   if (!parallel) return null
 
-  const handleClick = (e) => {
+  const handleClick = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    parallel.login()
+    parallel?.login()
   }
 
   return (

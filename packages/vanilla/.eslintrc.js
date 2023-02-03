@@ -9,7 +9,7 @@ module.exports = {
     jest: true,
   },
   root: true,
-  extends: ['eslint:recommended', 'standard', 'prettier', 'plugin:@typescript-eslint/recommended'],
+  extends: ['eslint:recommended', 'prettier', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   parserOptions: {
@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     'node/no-callback-literal': OFF,
     'n/no-callback-literal': OFF,
-    'camelcase': OFF,
+    camelcase: OFF,
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'sort-vars': ERROR,
     'no-debugger': process.env.NODE_ENV === 'development' ? OFF : ERROR,

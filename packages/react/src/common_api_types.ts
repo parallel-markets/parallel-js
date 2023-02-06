@@ -24,8 +24,6 @@ export type BusinessType =
   | 'C Corporation'
   | 'Irrevocable Trust'
   | 'Revocable Trust'
-  | 'Partnership LLC'
-  | 'Partnership LP'
   | 'Family Office'
   | 'Limited Liability Company'
   | 'Limited Partnership'

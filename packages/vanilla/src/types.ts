@@ -14,12 +14,28 @@ export type AuthCallbackResult = {
   errorDescription?: string
 }
 
-export interface ParallelConfig {
+// https://developer.parallelmarkets.com/docs/server/scopes
+export type ParallelScope = 'profile' | 'accreditation_status' | 'identity' | 'blockchain'
+
+// https://developer.parallelmarkets.com/docs/javascript/configuration
+type EmbedParallelConfig = {
+  flow_type: 'embed'
+  embed_into_id: string
+}
+type OverlayRedirectParallelConfig = {
+  flow_type: 'overlay' | 'redirect'
+}
+export type ParallelConfig = (EmbedParallelConfig | OverlayRedirectParallelConfig) & {
   client_id?: string
-  on_init?: () => void
   environment?: 'production' | 'demo'
-  flow_type?: 'overlay' | 'embed' | 'redirect'
-  scopes?: Array<string>
+  force_accreditation_check?: boolean
+  force_identity_check?: boolean
+  scopes?: Array<ParallelScope>
+  show_dismiss_button?: boolean
+  identity_claim_override_id?: number
+  verbose?: boolean
+  on_init?: () => void
+  raw_config?: Record<string, symbol>
 }
 
 type AuthSuccessCallbackFunc = (result: AuthCallbackResult) => void

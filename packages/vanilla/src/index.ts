@@ -76,7 +76,13 @@ export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> =
     return new Promise((resolve) => {
       // Resolve the initialized Parallel object upon init
       const onInit = () => resolve(Parallel)
-      Parallel.init({ ...config, on_init: onInit })
+      // The `raw_config` option lets us pass in extra values that aren't described in the ParallelConfig type
+      // such as upcoming features that are being tested. raw_config values are overwritten by an values of the
+      // same name that are explicitly specified, so only use it for undocumented config.
+      const baseConfig = config.raw_config ?? {}
+      delete config.raw_config
+      const parallelConfig = { ...baseConfig, ...config }
+      Parallel.init({ ...parallelConfig, on_init: onInit })
     })
   })
 }

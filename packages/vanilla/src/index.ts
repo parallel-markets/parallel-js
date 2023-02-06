@@ -79,8 +79,9 @@ export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> =
       // The `raw_config` option lets you pass in extra values that aren't described in the ParallelConfig type
       // such as upcoming features that are being tested.
       const baseConfig = config.raw_config ?? {}
-      delete config.raw_config
-      const parallelConfig = { ...baseConfig, ...config }
+      const rawlessConfig = { ...config }
+      delete rawlessConfig.raw_config
+      const parallelConfig = { ...baseConfig, ...rawlessConfig }
       Parallel.init({ ...parallelConfig, on_init: onInit })
     })
   })

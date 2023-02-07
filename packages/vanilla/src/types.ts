@@ -36,8 +36,6 @@ export type ParallelConfig = (EmbedParallelConfig | OverlayRedirectParallelConfi
   show_dismiss_button?: boolean
   identity_claim_override_id?: number
   verbose?: boolean
-  expected_entity_id?: string
-  expected_entity_type?: string
   on_init?: () => void
   raw_config?: Record<string, symbol>
 }

@@ -75,6 +75,8 @@ export interface LoginOptions {
   last_name?: string
   expected_entity_id?: string
   expected_entity_type?: 'self' | BusinessType
+  expected_business_name?: string
+  partner_supporting?: string
 }
 
 export interface Parallel {

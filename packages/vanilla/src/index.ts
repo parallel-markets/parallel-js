@@ -1,6 +1,7 @@
 import { Parallel, ParallelConfig } from './types'
 
 export * from './types'
+export * from './common_api_types'
 
 const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
 let parallelPromise: Promise<Parallel | null> | undefined
@@ -76,7 +77,13 @@ export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> =
     return new Promise((resolve) => {
       // Resolve the initialized Parallel object upon init
       const onInit = () => resolve(Parallel)
-      Parallel.init({ ...config, on_init: onInit })
+      // The `raw_config` option lets you pass in extra values that aren't described in the ParallelConfig type
+      // such as upcoming features that are being tested.
+      const baseConfig = config.raw_config ?? {}
+      const rawlessConfig = { ...config }
+      delete rawlessConfig.raw_config
+      const parallelConfig = { ...baseConfig, ...rawlessConfig }
+      Parallel.init({ ...parallelConfig, on_init: onInit })
     })
   })
 }

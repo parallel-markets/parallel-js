@@ -1,6 +1,6 @@
-// https://developer.parallelmarkets.com/docs/server/blockchain-api
+import { type EntityKind } from '@parallelmarkets/vanilla'
 
-import { EntityKind } from './common_api_types'
+// https://developer.parallelmarkets.com/docs/server/blockchain-api
 
 // https://developer.parallelmarkets.com/docs/server/data-structures#pid-token
 type PidTrait = 'accredited' | 'reg-s-us-person' | 'reg-s-non-us-person'

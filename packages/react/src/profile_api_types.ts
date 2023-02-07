@@ -1,6 +1,6 @@
-// https://developer.parallelmarkets.com/docs/server/profile-api
+import { type BusinessType } from '@parallelmarkets/vanilla'
 
-import { BusinessType } from './common_api_types'
+// https://developer.parallelmarkets.com/docs/server/profile-api
 
 export type IndividualProfile = {
   email: string | null

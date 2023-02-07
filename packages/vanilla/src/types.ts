@@ -1,3 +1,5 @@
+import { type BusinessType } from './common_api_types'
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type AuthResponse = {
   access_token: string

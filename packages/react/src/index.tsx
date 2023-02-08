@@ -116,7 +116,7 @@ export const useParallel = () => {
   }
 }
 
-export const PassportButton = (props: typeof HTMLImageElement) => {
+export const PassportButton = (props: JSX.IntrinsicElements['img']) => {
   const { parallel } = useParallel()
 
   if (!parallel) return null

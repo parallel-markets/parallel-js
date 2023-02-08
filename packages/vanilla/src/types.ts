@@ -37,7 +37,7 @@ export type ParallelConfig = (EmbedParallelConfig | OverlayRedirectParallelConfi
   identity_claim_override_id?: number
   verbose?: boolean
   on_init?: () => void
-  raw_config?: Record<string, symbol>
+  raw_config?: Record<string, any>
 }
 
 type AuthSuccessCallbackFunc = (result: AuthCallbackResult) => void

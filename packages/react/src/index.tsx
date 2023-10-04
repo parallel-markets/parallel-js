@@ -101,7 +101,7 @@ export const useParallel = () => {
     parallel,
     error,
     loginStatus,
-    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/me'),
+    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/profile'),
     login: parallel.login,
     logout: parallel.logout,
   }

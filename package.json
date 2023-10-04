@@ -5,7 +5,7 @@
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
     "build": "pnpm --parallel --filter '@parallelmarkets/*' build",
-    "lint": "NODE_ENV=test eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
+    "lint": "eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
     "test": "NODE_ENV=test jest"
   },
   "keywords": [

@@ -17,7 +17,7 @@ $> npm install --save @parallelmarkets/react @parallelmarkets/vanilla
 
 ## Usage
 
-The first step is to use the `loadParallel` function from the [@parallelmarkets/vanilla](https://www.npmjs.com/package/@parallelmarkets/vanilla) package to load the Parallel library.  This is then set in a `ParallelProvider` React context at the top level of your React application.
+The first step is to use the `loadParallel` function from the [@parallelmarkets/vanilla](https://www.npmjs.com/package/@parallelmarkets/vanilla) package to load the Parallel library. This is then set in a `ParallelProvider` React context at the top level of your React application.
 
 ```js
 import { loadParallel } from '@parallelmarkets/vanilla'
@@ -40,15 +40,12 @@ root.render(<App />)
 
 Then, anywhere inside your application you can call the hook `useParallel` to get access to a number of useful properties:
 
- * `parallel`: This provides access to the [full JS SDK](https://developer.parallelmarkets.com/docs/javascript/sdk)
- * `loginStatus`: The current login status of the user. This is the result of a call to [`getLoginStatus()`](https://developer.parallelmarkets.com/docs/javascript/sdk), which may be null initially until a call to the API finishes.
- * `getProfile()`: A function that returns a `Promise` that will be resolved with profile information (from a call to the [Profile API](https://developer.parallelmarkets.com/docs/server/profile-api))
- * `getAccreditations()`: A function that returns a `Promise` that will be resolved with accreditation information (from a call to the [Accreditations API](https://developer.parallelmarkets.com/docs/server/accreditations-api))
- * `getBlockchain()`: A function that returns a `Promise` that will be resolved with blockchain information (from a call to the [Blockchain API](https://developer.parallelmarkets.com/docs/server/blockchain-api)) 
- * `getIdentity()`: A function that returns a `Promise` that will be resolved with identity KYC/AML information (from a call to the [Identity API](https://developer.parallelmarkets.com/docs/server/identity-api))
- * `login()`: A shortcut to `parallel.login()`
- * `logout()`: A shortcut to `parallel.logout()`
- * `error`: Any error that resulted from getting the current login status on load
+- `parallel`: This provides access to the [full JS SDK](https://developer.parallelmarkets.com/docs/javascript/sdk)
+- `loginStatus`: The current login status of the user. This is the result of a call to [`getLoginStatus()`](https://developer.parallelmarkets.com/docs/javascript/sdk), which may be null initially until a call to the API finishes.
+- `getProfile()`: A function that returns a `Promise` that will be resolved with profile information (from a call to the [Profile API](https://developer.parallelmarkets.com/docs/server/profile-api))
+- `login()`: A shortcut to `parallel.login()`
+- `logout()`: A shortcut to `parallel.logout()`
+- `error`: Any error that resulted from getting the current login status on load
 
 For instance:
 
@@ -113,7 +110,7 @@ root.render(<App />)
 
 ## Embed Flow Type
 
-While the "overlay" and "redirect" `flow_type` options will work fine with React, the "embed" option will not.  React recreates elements on render/re-render, causing any children iframe elements to be recreated, which results in reloading the URL in the `src` attribute. This causes a reload of the Parallel experience within the iframe, which is not an ideal experience for users.
+While the "overlay" and "redirect" `flow_type` options will work fine with React, the "embed" option will not. React recreates elements on render/re-render, causing any children iframe elements to be recreated, which results in reloading the URL in the `src` attribute. This causes a reload of the Parallel experience within the iframe, which is not an ideal experience for users.
 
 [This issue on React’s Github](https://github.com/facebook/react/issues/858) has more info about the effect. Any movement of the `iframe` element in the DOM (including recreating, as React does) will produce a re-fetching of the `src` URL of the `iframe`, resulting in a re-render of the Parallel experience.
 

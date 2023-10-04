@@ -6,7 +6,7 @@
   "scripts": {
     "build": "pnpm --parallel --filter '@parallelmarkets/*' build",
     "lint": "eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
-    "test": "NODE_ENV=test jest"
+    "test": "jest"
   },
   "keywords": [
     "ParallelMarkets"

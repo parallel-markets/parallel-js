@@ -27,7 +27,7 @@ const ProfileBox = () => {
   return <h3>{name}</h3>
 }
 
-const ConnectionArea = () => {
+const ConnectionDetails = () => {
   const { parallel, loginStatus } = useParallel()
 
   // we may render before the loginStatus is available
@@ -57,7 +57,7 @@ const ConnectionArea = () => {
 
 const App = () => (
   <ParallelProvider parallel={parallel}>
-    <ConnectionArea />
+    <ConnectionDetails />
   </ParallelProvider>
 )
 

@@ -3,15 +3,9 @@ import ButtonImg from './medium-passport-button.svg'
 
 import { ParallelApiRecord, loadParallel } from '@parallelmarkets/vanilla'
 import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
-import { AccreditationsApiResponse } from './accreditation_api_types'
 import { ProfileApiResponse } from './profile_api_types'
-import { BlockchainApiResponse } from './blockchain_api_types'
-import { IdentityApiResponse } from './identity_api_types'
 
-export * from './accreditation_api_types'
 export * from './profile_api_types'
-export * from './blockchain_api_types'
-export * from './identity_api_types'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
@@ -108,9 +102,6 @@ export const useParallel = () => {
     error,
     loginStatus,
     getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/me'),
-    getBlockchain: promisifyApiCall<BlockchainApiResponse>(parallel, '/blockchain'),
-    getAccreditations: promisifyApiCall<AccreditationsApiResponse>(parallel, '/accreditations'),
-    getIdentity: promisifyApiCall<IdentityApiResponse>(parallel, '/identity'),
     login: parallel.login,
     logout: parallel.logout,
   }

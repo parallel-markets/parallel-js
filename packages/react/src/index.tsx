@@ -39,7 +39,7 @@ const promisifyApiCall = <ResultType extends ParallelApiRecord>(parallel: Parall
         (result) => {
           resolve(result as ResultType)
         },
-        reject
+        reject,
       )
     })
   }

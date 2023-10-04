@@ -6,7 +6,7 @@
     "lib": ["ES5", "DOM", "ES2015.Promise"],
     "target": "ES5",
     "module": "ESNext", // as required by the TS Rollup plugin, this has no effect on the emitted JS because Babel does the transpiling
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "noEmit": true // Type check only. Rollup runs Babel to compile for lower targets in the next step
   }
 }

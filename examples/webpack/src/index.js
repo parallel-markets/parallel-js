@@ -16,12 +16,12 @@ const authSuccess = ({ authResponse }, parallel) => {
 
   if (!scopes.includes('accreditation_status')) return
 
-  parallel.api('/accreditations', ({ accreditations }) => {
-    if (accreditations.some(({ status }) => status === 'current')) {
-      msg.innerHTML += ' Also you are accredited!  Congrats!'
-    } else {
-      msg.innerHTML += ' Also, looks like you are not accredited. :('
-    }
+  parallel.api('/profile', (profile) => {
+    const name =
+      profile.type === 'individual'
+        ? `${profile.profile.first_name} ${profile.profile.last_name} (${profile.profile.email})`
+        : `${profile.profile.name} (a business)`
+    msg.innerHTML += ` You are logged in as ${name}.`
   })
 }
 

@@ -14,8 +14,6 @@ const authSuccess = ({ authResponse }, parallel) => {
 
   document.getElementById('authResponse').innerHTML = JSON.stringify(authResponse)
 
-  if (!scopes.includes('accreditation_status')) return
-
   parallel.api('/profile', (profile) => {
     const name =
       profile.type === 'individual'

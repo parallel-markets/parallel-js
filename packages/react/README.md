@@ -30,7 +30,7 @@ const parallel = loadParallel({ client_id: '123', environment: 'demo', flow_type
 
 const App = () => (
   <ParallelProvider parallel={parallel}>
-    <AccreditationArea />
+    <ParallelArea />
   </ParallelProvider>
 )
 
@@ -38,7 +38,7 @@ const root = createRoot(document.getElementById('main'))
 root.render(<App />)
 ```
 
-Then, anywhere inside your application you can call the hook `useParallel` to get access to a number of useful properties:
+Then, anywhere inside your application you can call the hook `useParallel` to get access to a number of useful properties and functions:
 
 - `parallel`: This provides access to the [full JS SDK](https://developer.parallelmarkets.com/docs/javascript/sdk)
 - `loginStatus`: The current login status of the user. This is the result of a call to [`getLoginStatus()`](https://developer.parallelmarkets.com/docs/javascript/sdk), which may be null initially until a call to the API finishes.
@@ -73,7 +73,7 @@ const ProfileInfo = () => {
 import { loadParallel } from '@parallelmarkets/vanilla'
 import { ParallelProvider, useParallel, PassportButton } from '@parallelmarkets/react'
 
-const AccreditationArea = () => {
+const ParallelArea = () => {
   // the parallel variable provides access to the full SDK available at
   // https://developer.parallelmarkets.com/docs/javascript/sdk
   const { parallel, loginStatus } = useParallel()
@@ -100,7 +100,7 @@ const parallel = loadParallel({ client_id: '123', environment: 'demo' })
 
 const App = () => (
   <ParallelProvider parallel={parallel}>
-    <AccreditationArea />
+    <ParallelArea />
   </ParallelProvider>
 )
 

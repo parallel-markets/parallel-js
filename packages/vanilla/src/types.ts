@@ -95,7 +95,7 @@ export interface Parallel {
 
 declare global {
   interface Window {
-    // parallel.js must be loaded directly from app.parallelmarkets.com/sdk/v1/parallel.js
+    // parallel.js must be loaded directly from app.parallelmarkets.com/sdk/v2/parallel.js
     // which places a `Paralell` object at the window level
     Parallel?: Parallel
   }

@@ -84,11 +84,11 @@ export const useParallel = () => {
   }
 
   // if we haven't loaded, return empty object
-  if (!parallel)
+  if (!parallel) {
     return {
       isLoaded: false,
     }
-
+  }
   // React recreates elements on render/re-render, causing any children iframe elements
   // to reload their src attribute which causes a reload of the Parallel experience within
   // the iframe - which is a bad experience for users

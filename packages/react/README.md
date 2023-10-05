@@ -46,6 +46,17 @@ root.render(<App />)
 > [!NOTE]
 > To best leverage Parallel's fraud detection, include the call to `loadParallel` across your app/site. This allows Parallel to detect suspicious behavior that may be indicative of fraud as users interact with your website.
 
+With `ParallelProvider` in place, you can use the `useParallel` hook in any component to get access to a number of useful properties and functions:
+
+- `parallel`: This provides access to the [full JS SDK](https://developer.parallelmarkets.com/docs/javascript/sdk)
+- `loginStatus`: The current login status of the user. This is the result of a call to [`getLoginStatus()`](https://developer.parallelmarkets.com/docs/javascript/sdk), which may be null initially until a call to the API finishes.
+- `getProfile()`: A function that returns a `Promise` that will be resolved with profile information (from a call to the [Profile API](https://developer.parallelmarkets.com/docs/server/profile-api))
+- `login()`: A shortcut to `parallel.login()`
+- `logout()`: A shortcut to `parallel.logout()`
+- `error`: Any error that resulted from getting the current login status on load
+
+For instance:
+
 ## Initiating a Parallel Flow
 
 This is a more complete example, showing use of the `useParallel` hook in a child component. Additionally, this example shows use of the `PassportButton` component, that, when clicked, initiates a Parallel flow. You can simply call `parallel.login()` as an alternative to showing the `PassportButton` component.

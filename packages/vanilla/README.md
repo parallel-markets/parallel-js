@@ -79,7 +79,7 @@ Upon completion, the user will be on the same page on your site where the authen
 
 ### Getting the Parallel ID
 
-The result of any successful authentication event will include an [`authResponse`](https://developer.parallelmarkets.com/docs/javascript/events#event-callback-argument) field that indicates the status of the handoff. Once the status is `connected`, you can call the [`getProfile()`](https://developer.parallelmarkets.com/docs/javascript/sdk) function to get the Parallel ID for the user or business that completed the flow (along with other profile information). That can be saved to your backend so your servers can make ongoing calls to get/update information for the user/business.
+The result of any successful authentication event will include an [`authResponse`](https://developer.parallelmarkets.com/docs/javascript/events#event-callback-argument) field that indicates the status of the handoff. Once the status is `connected`, you can call the [`getProfile()`](https://developer.parallelmarkets.com/docs/javascript/sdk) function to get the Parallel ID for the user or business that completed the flow (along with other profile information). The ID can then be saved to your backend so your servers can make ongoing calls to get/update information for the user/business.
 
 Here's an example of a few lines you can add to the example above if you want to send the profile information (including Parallel ID) to your backend.
 

@@ -19,7 +19,8 @@ $> npm install --save @parallelmarkets/react @parallelmarkets/vanilla
 
 The `ParallelProvider` allows you to use our hooks and access the Parallel object in any nested component. Render a ParallelProvider at the root of your React app so that it is available everywhere you need it.
 
-To use the `ParallelProvider`, call [loadParallel from `@parallelmarkets/vanilla`](https://www.npmjs.com/package/@parallelmarkets/vanilla) with your [configuration options](https://developer.parallelmarkets.com/docs/javascript/configuration). The ` loadParallel`` function asynchronously loads the parallel.js script and initializes a Parallel object. Pass the returned Promise to  `ParallelProvider`.
+To use the `ParallelProvider`, call [loadParallel from `@parallelmarkets/vanilla`](https://www.npmjs.com/package/@parallelmarkets/vanilla) with your [configuration options](https://developer.parallelmarkets.com/docs/javascript/configuration).
+The `loadParallel` function asynchronously loads the parallel.js script and initializes a Parallel object. Pass the returned Promise to `ParallelProvider`.
 
 ```js
 import { loadParallel } from '@parallelmarkets/vanilla'
@@ -42,7 +43,7 @@ const root = createRoot(app)
 root.render(<App />)
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > To best leverage Parallel's fraud detection, include the call to `loadParallel` across your app/site. This allows Parallel to detect suspicious behavior that may be indicative of fraud as users interact with your website.
 
 ## Initiating a Parallel Flow
@@ -90,7 +91,7 @@ root.render(<App />)
 
 ## Getting the Parallel ID
 
-The result of any successful authentication event will include an [`authResponse`](https://developer.parallelmarkets.com/docs/javascript/events#event-callback-argument) field that indicates the status of the handoff. Once the status is `connected`, you can call the [`getProfile()`](https://developer.parallelmarkets.com/docs/javascript/sdk) function to get the Parallel ID for the user or business that completed the flow (along with other profile information). That can be saved to your backend so your servers can make ongoing calls to get/update information for the user/business.
+The result of any successful authentication event will include an [`authResponse`](https://developer.parallelmarkets.com/docs/javascript/events#event-callback-argument) field that indicates the status of the handoff. Once the status is `connected`, you can call the [`getProfile()`](https://developer.parallelmarkets.com/docs/javascript/sdk) function to get the Parallel ID for the user or business that completed the flow (along with other profile information). The ID can then be saved to your backend so your servers can make ongoing calls to get/update information for the user/business.
 
 Here's an example of a few lines you can add to the example above if you want to send the profile information (including Parallel ID) to your backend.
 

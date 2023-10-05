@@ -40,8 +40,8 @@ After the Parallel SDK has been initialized (via `loadParallel()`), you can show
 
 To automatically load a Parallel Passport button on your page, just follow these steps:
 
-1. Add the HTML class parallel-login-button to the parent element where you want the button to appear.
-1. Call showButton(), which will then find any elements with that class and render a login button child element for each.
+1. Add the HTML class `parallel-login-button` to the parent element where you want the button to appear.
+1. Call `showButton()`, which will then find any elements with that class and render a login button child element for each.
 
 For instance, to add a "Parallel Passport" button somewhere on your page:
 

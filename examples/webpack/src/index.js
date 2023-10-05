@@ -14,7 +14,7 @@ const authSuccess = ({ authResponse }, parallel) => {
 
   document.getElementById('authResponse').innerHTML = JSON.stringify(authResponse)
 
-  parallel.api('/profile', (profile) => {
+  parallel.getProfile((profile) => {
     const name =
       profile.type === 'individual'
         ? `${profile.profile.first_name} ${profile.profile.last_name} (${profile.profile.email})`

@@ -8,6 +8,7 @@ const config = [
   {
     input: 'src/index.tsx',
     output: { file: pkg.main, format: 'cjs', generatedCode: 'es5' },
+    external: ['react'],
     plugins: [
       image(),
       // run TS first
@@ -23,6 +24,7 @@ const config = [
   {
     input: 'src/index.tsx',
     output: { file: pkg.module, format: 'esm', generatedCode: 'es2015' },
+    external: ['react'],
     plugins: [
       image(),
       // Run TS

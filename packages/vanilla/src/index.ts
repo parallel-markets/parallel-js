@@ -3,19 +3,19 @@ import { Parallel, ParallelConfig } from './types'
 export * from './types'
 export * from './common_api_types'
 
-const V1_URL = 'https://app.parallelmarkets.com/sdk/v1/parallel.js'
+const V2_URL = 'https://app.parallelmarkets.com/sdk/v2/parallel.js'
 let parallelPromise: Promise<Parallel | null> | undefined
 let loadCalled = false
 
 const findScript = () => {
-  const scriptNodes = document.querySelectorAll(`script[src^="${V1_URL}"]`)
+  const scriptNodes = document.querySelectorAll(`script[src^="${V2_URL}"]`)
 
   return scriptNodes.length > 0 ? scriptNodes[0] : undefined
 }
 
 const addScript = () => {
   const script = document.createElement('script')
-  script.src = V1_URL
+  script.src = V2_URL
 
   const headOrBody = document.head || document.body
   if (!headOrBody) throw new Error('Parallel JS cannot be added to page with no <head/> or <body/> element')

@@ -1,12 +1,12 @@
 {
   "name": "parallelmarkets",
   "private": true,
-  "version": "0.1.2",
+  "version": "2.0.0",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
     "build": "pnpm --parallel --filter '@parallelmarkets/*' build",
-    "lint": "NODE_ENV=test eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
-    "test": "NODE_ENV=test jest"
+    "lint": "eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
+    "test": "jest"
   },
   "keywords": [
     "ParallelMarkets"
@@ -15,7 +15,7 @@
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
-    "jest": "^29.2.2",
-    "rollup": "^3.2.3"
+    "jest": "^29.7.0",
+    "rollup": "^3.29.4"
   }
 }

@@ -15,7 +15,7 @@ const wrapRender = async (parallel, _children) => {
     await render(
       <ParallelProvider parallel={Promise.resolve(parallel)}>
         <PassportButton />
-      </ParallelProvider>
+      </ParallelProvider>,
     )
   })
 }

@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals'
 import { loadParallel } from '../index'
 import { ParallelConfig } from '../types'
 
@@ -27,7 +28,9 @@ global.window.Parallel = {
 }
 
 test('Configuration is set correctly', async () => {
-  const newconfig = { client_id: 'test' }
-  const parallel = await loadParallel(newconfig)
+  const parallel = await loadParallel({
+    client_id: 'test',
+    flow_type: 'overlay',
+  })
   expect(parallel?._config).toEqual(window.config)
 })

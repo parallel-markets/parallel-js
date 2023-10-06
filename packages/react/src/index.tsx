@@ -3,15 +3,9 @@ import ButtonImg from './medium-passport-button.svg'
 
 import { ParallelApiRecord, loadParallel } from '@parallelmarkets/vanilla'
 import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
-import { AccreditationsApiResponse } from './accreditation_api_types'
 import { ProfileApiResponse } from './profile_api_types'
-import { BlockchainApiResponse } from './blockchain_api_types'
-import { IdentityApiResponse } from './identity_api_types'
 
-export * from './accreditation_api_types'
 export * from './profile_api_types'
-export * from './blockchain_api_types'
-export * from './identity_api_types'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
@@ -45,7 +39,7 @@ const promisifyApiCall = <ResultType extends ParallelApiRecord>(parallel: Parall
         (result) => {
           resolve(result as ResultType)
         },
-        reject
+        reject,
       )
     })
   }
@@ -90,11 +84,11 @@ export const useParallel = () => {
   }
 
   // if we haven't loaded, return empty object
-  if (!parallel)
+  if (!parallel) {
     return {
       isLoaded: false,
     }
-
+  }
   // React recreates elements on render/re-render, causing any children iframe elements
   // to reload their src attribute which causes a reload of the Parallel experience within
   // the iframe - which is a bad experience for users
@@ -107,10 +101,7 @@ export const useParallel = () => {
     parallel,
     error,
     loginStatus,
-    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/me'),
-    getBlockchain: promisifyApiCall<BlockchainApiResponse>(parallel, '/blockchain'),
-    getAccreditations: promisifyApiCall<AccreditationsApiResponse>(parallel, '/accreditations'),
-    getIdentity: promisifyApiCall<IdentityApiResponse>(parallel, '/identity'),
+    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/profile'),
     login: parallel.login,
     logout: parallel.logout,
   }

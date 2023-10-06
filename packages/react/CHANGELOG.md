@@ -9,6 +9,10 @@
 - Documentation updated with improved samples.
 - Sample JavaScript app updated and improved.
 
+### Removed
+
+- Functions for getting Accreditation / Identity information directly (you should rely on server integrations for this information going forward)
+
 ## v0.0.7 (2022-11-01)
 
 ### Enhancements

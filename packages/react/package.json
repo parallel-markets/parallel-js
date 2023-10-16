@@ -23,6 +23,14 @@
   "files": [
     "./dist/**/*"
   ],
+  "bugs": {
+    "url": "https://github.com/parallel-markets/parallel-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parallel-markets/parallel-js.git",
+    "directory": "packages/react"
+  },
   "keywords": [
     "ParallelMarkets"
   ],

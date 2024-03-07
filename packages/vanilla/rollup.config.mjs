@@ -1,6 +1,7 @@
 import { babel } from '@rollup/plugin-babel'
 import pkg from './package.json' assert { type: 'json' }
 import typescript from '@rollup/plugin-typescript'
+import replace from '@rollup/plugin-replace'
 
 const config = [
   // config for CommonJS
@@ -8,7 +9,15 @@ const config = [
     input: 'src/index.ts',
     output: { file: pkg.main, format: 'cjs', generatedCode: 'es5' },
     plugins: [
-      // run TS first
+      // First perform constant replacement
+      replace({
+        values: {
+          'process.env.PACKAGE_NAME': JSON.stringify(pkg.name),
+          'process.env.PACKAGE_VERSION': JSON.stringify(pkg.version),
+        },
+        preventAssignment: true,
+      }),
+      // TS conversion
       typescript({
         tsconfig: './tsconfig.cjs.json', // this TS config checks types only, Babel compiles in the next plugin
         exclude: ['**/*-test.ts'],
@@ -22,7 +31,15 @@ const config = [
     input: 'src/index.ts',
     output: { file: pkg.module, format: 'esm', generatedCode: 'es2015' },
     plugins: [
-      // Run TS
+      // First perform constant replacement
+      replace({
+        values: {
+          'process.env.PACKAGE_NAME': JSON.stringify(pkg.name),
+          'process.env.PACKAGE_VERSION': JSON.stringify(pkg.version),
+        },
+        preventAssignment: true,
+      }),
+      // TS conversion
       typescript({
         tsconfig: './tsconfig.esm.json', // TS-Config for ESM target
         exclude: ['**/*-test.ts'],

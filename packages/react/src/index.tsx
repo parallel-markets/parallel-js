@@ -96,6 +96,9 @@ export const useParallel = () => {
     console.error('flow_type must be "redirect" or "overlay" when using React')
   }
 
+  // This should be idempotent, so it's OK if we call it multiple times with the same values
+  parallel._appendLoadContext(`${process.env.PACKAGE_NAME} ${process.env.PACKAGE_VERSION}`)
+
   return {
     isLoaded: true,
     parallel,

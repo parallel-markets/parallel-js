@@ -14,7 +14,7 @@ module.exports = function (api) {
     ],
   ]
 
-  const plugins = []
+  const plugins = [['@babel/plugin-proposal-private-methods', { loose: true }]]
 
   return {
     presets,

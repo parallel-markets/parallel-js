@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.1 (2024-03-07)
+
+### Enhancements
+
+- Update Vanilla SDK to pass library context to the Parallel JS for logging/debugging purposes
+
 ## v2.0.0 (2023-10-06)
 
 - Updates Vanilla SDK to use V2 API.

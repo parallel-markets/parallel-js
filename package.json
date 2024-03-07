@@ -16,6 +16,6 @@
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
     "jest": "^29.7.0",
-    "rollup": "^3.29.4"
+    "rollup": "^4.12.1"
   }
 }

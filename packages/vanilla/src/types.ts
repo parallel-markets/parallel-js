@@ -91,6 +91,7 @@ export interface Parallel {
   subscribe: (event: SubscribeEvents, callback: SubscriptionHandler) => void
   unsubscribe: (event: SubscribeEvents, callback: SubscriptionHandler) => void
   getLoginStatus: (callback: AuthSuccessCallbackFunc) => void
+  _appendLoadContext: (context: string) => void
 }
 
 declare global {

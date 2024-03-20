@@ -84,6 +84,7 @@ export const loadParallel = (config: ParallelConfig): Promise<Parallel | null> =
       delete rawlessConfig.raw_config
       const parallelConfig = { ...baseConfig, ...rawlessConfig }
       Parallel.init({ ...parallelConfig, on_init: onInit })
+      Parallel._appendLoadContext(`${process.env.PACKAGE_NAME} ${process.env.PACKAGE_VERSION}`)
     })
   })
 }

@@ -8,6 +8,7 @@ const ParallelMock = {
   getLoginStatus: (cb) => cb({}),
   subscribe: () => null,
   unsubscribe: () => null,
+  _appendLoadContext: () => null,
 }
 
 const wrapRender = async (parallel, _children) => {

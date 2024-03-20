@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
-    "build": "pnpm --parallel --filter '@parallelmarkets/*' build",
+    "build": "pnpm --filter '@parallelmarkets/*' build",
     "lint": "eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
     "test": "jest"
   },
@@ -16,6 +16,6 @@
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
     "jest": "^29.7.0",
-    "rollup": "^3.29.4"
+    "rollup": "^4.12.1"
   }
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0.1 (2024-03-07)
+
+### Enhancements
+
+- Update React library SDK to pass library context to the Parallel JS for logging/debugging purposes
+
 ## v2.0.0 (2023-10-06)
 
 - Updates APIs to use [Case Management APIs](https://developer.parallelmarkets.com/docs/server/case-management-api/introduction).

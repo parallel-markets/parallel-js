@@ -40,13 +40,13 @@ export type ParallelConfig = (EmbedParallelConfig | OverlayRedirectParallelConfi
   raw_config?: Record<string, any>
 }
 
-type AuthSuccessCallbackFunc = (result: AuthCallbackResult) => void
-type AuthFailureCallbackFunc = (result: { error: unknown }) => void
+type AuthSuccessCallbackFunc = (_result: AuthCallbackResult) => void
+type AuthFailureCallbackFunc = (_result: { error: unknown }) => void
 
 // TODO: implement this
 export type ParallelApiRecord = Record<string, any>
-export type ParallelApiSuccessCallback = (response: ParallelApiRecord) => void
-export type ParallelApiErrorCallback = (reason: any) => void
+export type ParallelApiSuccessCallback = (_response: ParallelApiRecord) => void
+export type ParallelApiErrorCallback = (_reason: any) => void
 
 type SubscribeEvents = 'auth.login' | 'auth.logout' | 'auth.statusChange' | 'auth.authResponseChange'
 type OAuthErrorCode =
@@ -67,7 +67,7 @@ type SubscriptionEvent = {
     refresh_expires_in: number
   }
 }
-type SubscriptionHandler = (response: SubscriptionEvent) => void
+type SubscriptionHandler = (_response: SubscriptionEvent) => void
 
 export interface LoginOptions {
   email?: string
@@ -80,18 +80,18 @@ export interface LoginOptions {
 }
 
 export interface Parallel {
-  init(options: ParallelConfig): void
+  init(_options: ParallelConfig): void
   _config: ParallelConfig
-  login: (options?: LoginOptions) => void
+  login: (_options?: LoginOptions) => void
   logout: () => void
-  subscribeWithButton: (successFunc: AuthSuccessCallbackFunc, errorFunc: AuthFailureCallbackFunc) => void
+  subscribeWithButton: (_successFunc: AuthSuccessCallbackFunc, _errorFunc: AuthFailureCallbackFunc) => void
   showButton: () => void
   hideButton: () => void
-  api: (endpoint: string, callback: ParallelApiSuccessCallback, errorback: ParallelApiErrorCallback) => void
-  subscribe: (event: SubscribeEvents, callback: SubscriptionHandler) => void
-  unsubscribe: (event: SubscribeEvents, callback: SubscriptionHandler) => void
-  getLoginStatus: (callback: AuthSuccessCallbackFunc) => void
-  _appendLoadContext: (context: string) => void
+  api: (_endpoint: string, _callback: ParallelApiSuccessCallback, _errback: ParallelApiErrorCallback) => void
+  subscribe: (_event: SubscribeEvents, _callback: SubscriptionHandler) => void
+  unsubscribe: (_event: SubscribeEvents, _callback: SubscriptionHandler) => void
+  getLoginStatus: (_callback: AuthSuccessCallbackFunc) => void
+  _appendLoadContext: (_context: string) => void
 }
 
 declare global {

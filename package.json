@@ -5,7 +5,7 @@
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
     "build": "pnpm --filter '@parallelmarkets/*' build",
-    "lint": "eslint examples/*/src packages/*/src && prettier -l packages/*/src examples/*/src",
+    "lint": "pnpm -r lint",
     "test": "jest"
   },
   "keywords": [
@@ -17,6 +17,11 @@
   "devDependencies": {
     "globals": "^15.0.0",
     "jest": "^29.7.0",
-    "rollup": "^4.16.2"
+    "rollup": "^4.16.2",
+    "eslint": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-config-prettier": "^9.1.0"
   }
 }

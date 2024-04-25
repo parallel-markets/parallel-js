@@ -2,7 +2,7 @@ import React, { PropsWithChildren, createContext, useContext, useEffect, useStat
 import ButtonImg from './medium-passport-button.svg'
 
 import { loadParallel } from '@parallelmarkets/vanilla'
-import type { AuthCallbackResult, Parallel, ProfileApiResponse } from '@parallelmarkets/vanilla'
+import type { AuthCallbackResult, ProfileApiResponse } from '@parallelmarkets/vanilla'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>

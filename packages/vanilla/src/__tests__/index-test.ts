@@ -14,7 +14,7 @@ global.window.Parallel = {
     on_init?.()
   },
   getLoginStatus: () => null,
-  getProfile: () => null,  
+  getProfile: () => null,
   login: () => null,
   logout: () => null,
   unsubscribe: () => null,
@@ -25,7 +25,7 @@ global.window.Parallel = {
   _appendLoadContext: () => null,
   get _config() {
     return window.config
-  }
+  },
 }
 
 test('Configuration is set correctly', async () => {

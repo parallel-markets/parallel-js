@@ -1,7 +1,6 @@
 import { Parallel, ParallelConfig } from './types'
 
 export * from './types'
-export * from './common_api_types'
 
 const V2_URL = 'https://app.parallelmarkets.com/sdk/v2/parallel.js'
 let parallelPromise: Promise<Parallel | null> | undefined

@@ -1,11 +1,8 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
-import { ParallelApiRecord, loadParallel } from '@parallelmarkets/vanilla'
-import type { AuthCallbackResult, Parallel } from '@parallelmarkets/vanilla'
-import { ProfileApiResponse } from './profile_api_types'
-
-export * from './profile_api_types'
+import { loadParallel } from '@parallelmarkets/vanilla'
+import type { AuthCallbackResult, Parallel, ProfileApiResponse } from '@parallelmarkets/vanilla'
 
 type LoadParallelPromise = ReturnType<typeof loadParallel>
 type LoadParallelResult = Awaited<ReturnType<typeof loadParallel>>
@@ -27,22 +24,6 @@ export const ParallelProvider = ({ parallel, children, ...props }: ParallelProvi
 
 const isPromise = (thing: unknown): thing is PromiseLike<unknown> => {
   return typeof (thing as PromiseLike<unknown>)?.then === 'function'
-}
-
-// The Embed API works with callback functions. This wrapper converts them to promises.
-const promisifyApiCall = <ResultType extends ParallelApiRecord>(parallel: Parallel, endpoint: string) => {
-  return () => {
-    // This promise resolves with the type of the API's Success Callback function's first Parameter
-    return new Promise<ResultType>((resolve, reject) => {
-      parallel.api(
-        endpoint,
-        (result) => {
-          resolve(result as ResultType)
-        },
-        reject,
-      )
-    })
-  }
 }
 
 export const useParallel = () => {
@@ -104,7 +85,7 @@ export const useParallel = () => {
     parallel,
     error,
     loginStatus,
-    getProfile: promisifyApiCall<ProfileApiResponse>(parallel, '/profile'),
+    getProfile: new Promise<ProfileApiResponse>(parallel.getProfile),
     login: parallel.login,
     logout: parallel.logout,
   }

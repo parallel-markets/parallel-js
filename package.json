@@ -6,7 +6,7 @@
   "scripts": {
     "build": "pnpm --filter '@parallelmarkets/*' build",
     "lint": "pnpm -r lint",
-    "test": "jest"
+    "test": "pnpm -r test"
   },
   "keywords": [
     "ParallelMarkets"

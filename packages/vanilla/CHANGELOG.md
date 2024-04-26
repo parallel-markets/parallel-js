@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.0.2 (2024-04-26)
+
+### Enhancements
+
+- Updated types to ensure consistency with all supported options
+- Upgraded to pnpm 9
+
 ## v2.0.1 (2024-03-07)
 
 ### Enhancements

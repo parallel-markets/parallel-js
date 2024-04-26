@@ -113,10 +113,14 @@ export interface LoginOptions {
   email?: string
   first_name?: string
   last_name?: string
+  external_id?: string
   expected_entity_id?: string
   expected_entity_type?: 'self' | BusinessType
   expected_business_name?: string
   partner_supporting?: string
+  ref_code?: string
+  redirect_uri_signature?: string
+  required_entity_id?: string
 }
 
 export interface Parallel {

@@ -2,7 +2,8 @@ name: ci
 on: push
 
 env:
-  NODE_VERSION: 20.9.0
+  NODE_VERSION: 20.12.2
+  PNPM_VERSION: 9
 
 jobs:
   test:
@@ -11,11 +12,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "pnpm"
+          cache: pnpm
       - run: pnpm install --no-optional
       - run: pnpm lint
       - run: pnpm test

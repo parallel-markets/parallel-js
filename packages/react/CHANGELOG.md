@@ -1,11 +1,15 @@
 # Changelog
 
-## v2.0.2 (2024-04-26)
+## v2.1.0 (2024-04-26)
+
+### Changed
+
+- Updated types to ensure consistency with all supported options (#23). Some types (ProfileAPIResponse / IndividualProfile / BusinessProfile) are
+  now exported from @parallelmarkets/vanilla instead of @parallelmarkets/react
 
 ### Enhancements
 
-- Updated types to ensure consistency with all supported options
-- Upgraded to pnpm 9
+- Upgraded to pnpm 9 (#20)
 
 ## v2.0.1 (2024-03-07)
 

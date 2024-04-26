@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
-      - run: pnpm install --no-optional
+      - run: pnpm install
       - run: pnpm lint
       - run: pnpm test
+      - run: pnpm build
+      - run: pnpm typecheck

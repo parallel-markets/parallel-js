@@ -9,22 +9,23 @@ declare global {
 }
 
 global.window.Parallel = {
-  get _config() {
-    return window.config
-  },
   init: ({ on_init, ...params }: ParallelConfig) => {
     window.config = params
     on_init?.()
   },
-  api: () => null,
+  getLoginStatus: () => null,
+  getProfile: () => null,
   login: () => null,
   logout: () => null,
+  unsubscribe: () => null,
   subscribe: () => null,
   showButton: () => null,
   hideButton: () => null,
-  unsubscribe: () => null,
-  getLoginStatus: () => null,
   subscribeWithButton: () => null,
+  _appendLoadContext: () => null,
+  get _config() {
+    return window.config
+  },
 }
 
 test('Configuration is set correctly', async () => {

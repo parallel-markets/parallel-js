@@ -5,6 +5,7 @@ import React from 'react'
 import { ParallelProvider, PassportButton } from '../index'
 
 const ParallelMock = {
+  getProfile: (cb, _eb) => cb({}),
   getLoginStatus: (cb) => cb({}),
   subscribe: () => null,
   unsubscribe: () => null,

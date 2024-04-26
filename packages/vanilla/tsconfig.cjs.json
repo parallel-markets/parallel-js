@@ -7,9 +7,6 @@
     "target": "ES5",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "noEmit": true, // Type check only. Rollup runs Babel to compile for lower targets in the next step
-    "paths": {
-      "@parallelmarkets/*": ["../*"]
-    }
+    "noEmit": true // Type check only. Rollup runs Babel to compile for lower targets in the next step
   }
 }

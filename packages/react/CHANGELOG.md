@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- A bug was fixed in our React package to ensure `getProfile` remains a function.
+- A bug was fixed in our React package to ensure `getProfile` remains a function (#25)
 
 ## v2.1.0 (2024-04-26)
 

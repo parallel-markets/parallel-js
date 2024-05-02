@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.1 (2024-05-02)
+
+### Fixed
+
+- A bug was fixed in our React package to ensure `getProfile` remains a function.
+
 ## v2.1.0 (2024-04-26)
 
 ### Changed

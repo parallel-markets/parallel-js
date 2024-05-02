@@ -85,7 +85,7 @@ export const useParallel = () => {
     parallel,
     error,
     loginStatus,
-    getProfile: new Promise<ProfileApiResponse>(parallel.getProfile),
+    getProfile: () => new Promise<ProfileApiResponse>(parallel.getProfile),
     login: parallel.login,
     logout: parallel.logout,
   }

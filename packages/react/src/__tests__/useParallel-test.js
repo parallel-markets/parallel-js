@@ -47,9 +47,9 @@ describe('The useParallel hook', () => {
     )
     const { result } = renderHook(() => useParallel(), { wrapper })
 
-    // wait to load
     await waitFor(() => expect(result.current).toMatchObject({ isLoaded: true }))
     act(() => {
+      // the getProfile Promise resolves with the user account fetched by the getProfile() callback in the Parallel client
       result.current.getProfile().then((profile) => {
         expect(profile).toMatchObject(TestAccount)
       })

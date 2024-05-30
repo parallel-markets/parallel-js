@@ -69,5 +69,7 @@ describe('The useParallel hook', () => {
       error: 'test error',
       loginStatus: { error: 'test error' },
     })
+
+    expect(true).toBe(false)
   })
 })

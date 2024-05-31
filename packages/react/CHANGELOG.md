@@ -1,11 +1,5 @@
 # Changelog
 
-## v2.1.2 (2024-05-31)
-
-### Enhancements
-
-- Tests were added to cover the `useParallel()` hook (#26)
-
 ## v2.1.1 (2024-05-02)
 
 ### Fixed

@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Update dependency @parallelmarekts/vanilla to version 2.1.2
+- Update dependency @parallelmarkets/vanilla to version 2.1.2
 
 ## v2.1.1 (2024-05-02)
 

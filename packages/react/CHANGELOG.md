@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.2 (2024-10-10)
+
+### Changed
+
+- Update dependency @parallelmarekts/vanilla to version 2.1.2
+
 ## v2.1.1 (2024-05-02)
 
 ### Fixed

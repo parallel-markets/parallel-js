@@ -11,8 +11,7 @@ export type BusinessType =
   | 'Limited Liability Company'
   | 'Limited Partnership'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-type AuthResponse = {
+export type AuthResponse = {
   access_token: string
   token_type: 'bearer'
   expires_in: number
@@ -50,6 +49,7 @@ export type ParallelConfig = (EmbedParallelConfig | OverlayRedirectParallelConfi
   identity_claim_override_id?: number
   verbose?: boolean
   on_init?: () => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   raw_config?: Record<string, any>
 }
 
@@ -77,24 +77,25 @@ export type ProfileApiResponse = {
   available_scopes: Array<ParallelScope>
 }
 
-type GetProfileSuccessCallbackFunc = (_result: ProfileApiResponse) => void
+export type GetProfileSuccessCallbackFunc = (_result: ProfileApiResponse) => void
 
-type GetProfileFailureCallbackFunc = (_result: { error: unknown }) => void
+export type GetProfileFailureCallbackFunc = (_result: { error: unknown }) => void
 
-type AuthSuccessCallbackFunc = (_result: AuthCallbackResult) => void
+export type AuthSuccessCallbackFunc = (_result: AuthCallbackResult) => void
 
-type AuthFailureCallbackFunc = (_result: { error: unknown }) => void
+export type AuthFailureCallbackFunc = (_result: { error: unknown }) => void
 
-type SubscribeEvents = 'auth.login' | 'auth.logout' | 'auth.statusChange' | 'auth.authResponseChange'
+export type SubscribeEvents = 'auth.login' | 'auth.logout' | 'auth.statusChange' | 'auth.authResponseChange'
 
-type OAuthErrorCode =
+export type OAuthErrorCode =
   | 'invalid_request'
   | 'invalid_client'
   | 'invalid_grant'
   | 'unauthorized_client'
   | 'unsupported_grant_type'
+  | 'access_denied'
 
-type SubscriptionEvent = {
+export type SubscriptionEvent = {
   status: 'not_authorized' | 'unknown' | 'connected'
   error?: OAuthErrorCode
   errorDescription?: string
@@ -107,7 +108,7 @@ type SubscriptionEvent = {
   }
 }
 
-type SubscriptionHandler = (_response: SubscriptionEvent) => void
+export type SubscriptionHandler = (_response: SubscriptionEvent) => void
 
 export interface LoginOptions {
   email?: string
@@ -123,6 +124,11 @@ export interface LoginOptions {
   required_entity_id?: string
 }
 
+// In this case, the object param should be the result of parsing JSON
+export type RawApiCallback = (_json: object) => void
+
+export type RawApiErrback = (_err: Error) => void
+
 export interface Parallel {
   init(_options: ParallelConfig): void
   getLoginStatus: (_callback: AuthSuccessCallbackFunc) => void
@@ -134,6 +140,8 @@ export interface Parallel {
   showButton: () => void
   hideButton: () => void
   subscribeWithButton: (_successFunc: AuthSuccessCallbackFunc, _errorFunc: AuthFailureCallbackFunc) => void
+  api: (_path: string, _successFunc: RawApiCallback, _errorFunc: RawApiErrback) => void
+  _codeVersion: string
   _appendLoadContext: (_context: string) => void
   _config: ParallelConfig
 }

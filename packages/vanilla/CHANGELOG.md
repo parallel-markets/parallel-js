@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.2 (2024-10-10)
+
+### Fixed
+
+- The `OAuthErrorCode` TypeScript type now includes a previously missing value 'access_denied'
+
+### Enhancements
+
+- Some previously unexported TypeScript types are now exported
+
 ## v2.1.1 (2024-05-02)
 
 ### Fixed

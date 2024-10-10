@@ -1,7 +1,7 @@
 {
   "name": "parallelmarkets",
   "private": true,
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "ParallelMarkets.com JavaScript SDK loading utility",
   "scripts": {
     "build": "pnpm --filter '@parallelmarkets/*' build",
@@ -16,13 +16,13 @@
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
-    "globals": "^15.0.0",
+    "eslint": "^9.12.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.11.1",
+    "eslint-plugin-promise": "^7.1.0",
+    "globals": "^15.11.0",
     "jest": "^29.7.0",
-    "rollup": "^4.16.2",
-    "eslint": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.2.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-config-prettier": "^9.1.0"
+    "rollup": "^4.24.0"
   }
 }

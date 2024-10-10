@@ -23,6 +23,8 @@ global.window.Parallel = {
   hideButton: () => null,
   subscribeWithButton: () => null,
   _appendLoadContext: () => null,
+  _codeVersion: 'test',
+  api: () => null,
   get _config() {
     return window.config
   },

@@ -1,5 +1,5 @@
 import { babel } from '@rollup/plugin-babel'
-import pkg from './package.json' assert { type: 'json' }
+import pkg from './package.json' with { type: 'json' }
 import image from '@rollup/plugin-image'
 import typescript from '@rollup/plugin-typescript'
 import replace from '@rollup/plugin-replace'

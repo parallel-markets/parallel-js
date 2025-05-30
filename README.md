@@ -1,6 +1,6 @@
 # Parallel Markets JavaScript Modules
 
-[![CI Status](https://github.com/parallel-markets/parallel-js/workflows/ci/badge.svg?branch=master)](https://github.com/parallel-markets/parallel-js/actions?query=branch%3Amaster+workflow%3Aci)
+[![ci](https://github.com/parallel-markets/parallel-js/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/parallel-markets/parallel-js/actions/workflows/ci.yml)
 
 This repo contains a few packages to make integration with the [Parallel Markets JavaScript SDK](https://developer.parallelmarkets.com/docs/javascript) as easy as possible.
 

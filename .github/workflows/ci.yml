@@ -2,8 +2,8 @@ name: ci
 on: push
 
 env:
-  NODE_VERSION: 22.9.0
-  PNPM_VERSION: 9
+  NODE_VERSION: 22.16.0
+  PNPM_VERSION: 10
 
 jobs:
   test:

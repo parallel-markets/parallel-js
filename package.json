@@ -16,15 +16,15 @@
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.1",
-    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-n": "^17.24.0",
+    "eslint-plugin-promise": "^7.3.0",
     "globals": "^16.5.0",
-    "jest": "^30.2.0",
-    "prettier": "^3.7.4",
-    "rollup": "^4.53.5"
+    "jest": "^30.4.2",
+    "prettier": "^3.8.3",
+    "rollup": "^4.60.4"
   },
   "pnpm": {
     "overrides": {

@@ -21,8 +21,8 @@
   "dependencies": {
     "@parallelmarkets/react": "workspace:*",
     "@parallelmarkets/vanilla": "workspace:*",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",

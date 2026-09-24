@@ -9,6 +9,8 @@ For a quick start, check out [the example React app](https://github.com/parallel
 
 ## Installation
 
+This package supports React and React DOM 18 or 19. Install matching versions of both packages in your application. React 16 and 17 applications can stay on an earlier release of `@parallelmarkets/react`, but are not supported by this release.
+
 Use `npm` to install the Parallel JS SDK module and this React library:
 
 ```sh
@@ -25,6 +27,7 @@ The `loadParallel` function asynchronously loads the parallel.js script and init
 ```js
 import { loadParallel } from '@parallelmarkets/vanilla'
 import { ParallelProvider } from '@parallelmarkets/react'
+import { createRoot } from 'react-dom/client'
 
 // Start loading the parallel library with the given configuration information. Make sure
 // you call this outside of a component's render to avoid recreating a `Parallel` object
@@ -64,6 +67,7 @@ This is a more complete example, showing use of the `useParallel` hook in a chil
 ```js
 import { loadParallel } from '@parallelmarkets/vanilla'
 import { ParallelProvider, useParallel, PassportButton } from '@parallelmarkets/react'
+import { createRoot } from 'react-dom/client'
 
 const ParallelProfile = () => {
   // the parallel variable provides access to the full SDK available at

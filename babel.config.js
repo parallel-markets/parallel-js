@@ -3,7 +3,8 @@ module.exports = function (api) {
   api.cache(false)
 
   const presets = [
-    'react-app',
+    '@babel/preset-typescript',
+    ['@babel/preset-react', { runtime: 'automatic' }],
     [
       '@babel/preset-env',
       {
@@ -14,11 +15,7 @@ module.exports = function (api) {
     ],
   ]
 
-  const plugins = [
-    ["@babel/plugin-proposal-private-methods", { "loose": true }],
-    ["@babel/plugin-transform-class-properties", { "loose": true }],
-    ["@babel/plugin-transform-private-property-in-object", { "loose": true }]
-  ]
+  const plugins = []
 
   return {
     presets,

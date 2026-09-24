@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
+import { type JSX, type PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
 import ButtonImg from './medium-passport-button.svg'
 
 import { loadParallel } from '@parallelmarkets/vanilla'

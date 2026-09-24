@@ -1,6 +1,4 @@
-import { render, screen } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
-import React from 'react'
+import { act, render, screen } from '@testing-library/react'
 
 import { ParallelProvider, PassportButton } from '../index'
 

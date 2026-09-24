@@ -2,7 +2,7 @@ const isEnvTest = process.env.NODE_ENV === 'test'
 
 module.exports = {
   presets: [
-    'react-app',
+    ['@babel/preset-react', { runtime: 'automatic' }],
     [
       '@babel/preset-env',
       {

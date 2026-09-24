@@ -9,7 +9,7 @@ const config = [
   {
     input: 'src/index.tsx',
     output: { file: pkg.main, format: 'cjs', generatedCode: 'es5' },
-    external: ['react'],
+    external: [/^react(?:\/|$)/],
     plugins: [
       // First perform constant replacement
       replace({
@@ -33,7 +33,7 @@ const config = [
   {
     input: 'src/index.tsx',
     output: { file: pkg.module, format: 'esm', generatedCode: 'es2015' },
-    external: ['react'],
+    external: [/^react(?:\/|$)/],
     plugins: [
       // First perform constant replacement
       replace({

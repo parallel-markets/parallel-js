@@ -6,15 +6,6 @@ settings:
 
 overrides:
   babel-traverse: npm:@babel/traverse@^7.23.2
-  cross-spawn: ^7.0.5
-  micromatch: ^4.0.8
-  js-yaml: ^4.1.1
-  on-headers: ^1.1.0
-  braces: ^3.0.3
-  ws: ^8.17.1
-  semver: ^7.6.0
-  node-forge: ^1.3.2
-  form-data: ^4.0.4
   uuid: ^11.1.1
 
 importers:
@@ -2382,6 +2373,9 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
+  argparse@1.0.10:
+    resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
+
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
@@ -3258,6 +3252,11 @@ packages:
     resolution: {integrity: sha512-j6PAQ2uUr79PZhBjP5C5fhl8e39FmRnOjsD5lGnWrFU8i2G776tBK7+nP8KuQUTTyAZUwfQqXAgrVH5MbH9CYQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  esprima@4.0.1:
+    resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
+    engines: {node: '>=4'}
+    hasBin: true
+
   esquery@1.7.0:
     resolution: {integrity: sha512-Ap6G0WQwcU/LHsvLwON1fAQX9Zp0A2Y6Y/cJBl9r/JbW90Zyg4/zbG6zzKa2OTALELarYHmKu0GhpM5EO+7T0g==}
     engines: {node: '>=0.10'}
@@ -4040,8 +4039,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@4.1.1:
-    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
+  js-yaml@3.15.2:
+    resolution: {integrity: sha512-6EuL879VkRA+1Cz578mKMiKvjPNEuk6+r1JaFzoSWejZmtf7xWbIyw1e3KkxlkzTIt9Taw6JBhEppG7utc1P+w==}
     hasBin: true
 
   js-yaml@4.3.2:
@@ -4826,6 +4825,14 @@ packages:
     resolution: {integrity: sha512-ftnu3TW4+3eBfLRFnDEkzGxSF/10BJBkaLJuBHZX0kiPS7bRdlpZGu6YGt4KngMkdTwJE6MbjavFpqHvqVt+Ew==}
     engines: {node: '>=18'}
 
+  semver@5.7.3:
+    resolution: {integrity: sha512-kM18BPOqTi0+TB68703/GJRpAML5Me+IDQsR1J26YB3EFKKNEyHIVZuWDX7+WKQB3tHwDwgk24BfhdpWUbytvQ==}
+    hasBin: true
+
+  semver@6.3.2:
+    resolution: {integrity: sha512-GYrCADwpu6yV5OAvchkQ27Z5wwMxWAEMg5NNWjyHh/5DboFFqbdbvYNIvZouQpxXyeMPoTOh0vdPYKlf0ZswdQ==}
+    hasBin: true
+
   semver@7.8.0:
     resolution: {integrity: sha512-AcM7dV/5ul4EekoQ29Agm5vri8JNqRyj39o0qpX6vDF2GZrtutZl5RwgD1XnZjiTAfncsJhMI48QQH3sN87YNA==}
     engines: {node: '>=10'}
@@ -4922,6 +4929,9 @@ packages:
   spdy@4.0.2:
     resolution: {integrity: sha512-r46gZQZQV+Kl9oItvl1JZZqJKGr+oEkB08A6BzkiR7593/7IbtuncXHd2YoYeTsG4157ZssMu9KYvUHLcjcDoA==}
     engines: {node: '>=6.0.0'}
+
+  sprintf-js@1.0.3:
+    resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
   stack-utils@2.0.6:
     resolution: {integrity: sha512-XlkWvfIm6RmsWtNJx+uqtKLS8eqFbxUg0ZzLXqY0caEy9l7hruX8IpiDnjsLavoBgqCCR71TqWO8MaXYheJ3RQ==}
@@ -5476,7 +5486,7 @@ snapshots:
       debug: 4.4.3
       gensync: 1.0.0-beta.2
       json5: 2.2.3
-      semver: 7.8.0
+      semver: 6.3.2
     transitivePeerDependencies:
       - supports-color
 
@@ -5486,7 +5496,7 @@ snapshots:
       '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
       eslint: 9.39.5
       eslint-visitor-keys: 2.1.0
-      semver: 7.8.0
+      semver: 6.3.2
 
   '@babel/generator@7.29.1':
     dependencies:
@@ -5518,7 +5528,7 @@ snapshots:
       '@babel/helper-validator-option': 7.29.7
       browserslist: 4.28.2
       lru-cache: 5.1.1
-      semver: 7.8.0
+      semver: 6.3.2
 
   '@babel/helper-compilation-targets@7.29.13':
     dependencies:
@@ -5526,7 +5536,7 @@ snapshots:
       '@babel/helper-validator-option': 7.29.7
       browserslist: 4.29.5
       lru-cache: 5.1.1
-      semver: 7.8.0
+      semver: 6.3.2
 
   '@babel/helper-create-class-features-plugin@7.29.13(@babel/core@7.29.13)':
     dependencies:
@@ -5537,7 +5547,7 @@ snapshots:
       '@babel/helper-replace-supers': 7.29.7(@babel/core@7.29.13)
       '@babel/helper-skip-transparent-expression-wrappers': 7.29.13
       '@babel/traverse': 7.29.13
-      semver: 7.8.0
+      semver: 6.3.2
     transitivePeerDependencies:
       - supports-color
 
@@ -5550,7 +5560,7 @@ snapshots:
       '@babel/helper-replace-supers': 7.28.6(@babel/core@7.29.13)
       '@babel/helper-skip-transparent-expression-wrappers': 7.27.1
       '@babel/traverse': 7.29.0
-      semver: 7.8.0
+      semver: 6.3.2
     transitivePeerDependencies:
       - supports-color
 
@@ -5559,14 +5569,14 @@ snapshots:
       '@babel/core': 7.29.13
       '@babel/helper-annotate-as-pure': 7.27.3
       regexpu-core: 6.4.0
-      semver: 7.8.0
+      semver: 6.3.2
 
   '@babel/helper-create-regexp-features-plugin@7.29.10(@babel/core@7.29.13)':
     dependencies:
       '@babel/core': 7.29.13
       '@babel/helper-annotate-as-pure': 7.29.7
       regexpu-core: 6.5.4
-      semver: 7.8.0
+      semver: 6.3.2
 
   '@babel/helper-define-polyfill-provider@0.6.8(@babel/core@7.29.13)':
     dependencies:
@@ -6238,7 +6248,7 @@ snapshots:
       babel-plugin-polyfill-corejs2: 0.4.17(@babel/core@7.29.13)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.29.13)
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.13)
-      semver: 7.8.0
+      semver: 6.3.2
     transitivePeerDependencies:
       - supports-color
 
@@ -6377,7 +6387,7 @@ snapshots:
       babel-plugin-polyfill-corejs3: 0.14.2(@babel/core@7.29.13)
       babel-plugin-polyfill-regenerator: 0.6.8(@babel/core@7.29.13)
       core-js-compat: 3.49.0
-      semver: 7.8.0
+      semver: 6.3.2
     transitivePeerDependencies:
       - supports-color
 
@@ -6516,7 +6526,7 @@ snapshots:
       globals: 14.0.0
       ignore: 5.3.2
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 4.3.2
       minimatch: 3.1.5
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -6561,7 +6571,7 @@ snapshots:
       camelcase: 5.3.1
       find-up: 4.1.0
       get-package-type: 0.1.0
-      js-yaml: 4.3.2
+      js-yaml: 3.15.2
       resolve-from: 5.0.0
 
   '@istanbuljs/schema@0.1.6': {}
@@ -7829,6 +7839,10 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.2
 
+  argparse@1.0.10:
+    dependencies:
+      sprintf-js: 1.0.3
+
   argparse@2.0.1: {}
 
   aria-query@5.3.0:
@@ -8022,7 +8036,7 @@ snapshots:
       '@babel/core': 7.29.13
       find-cache-dir: 4.0.0
       schema-utils: 4.3.3
-      webpack: 5.112.2(webpack-cli@5.1.4)
+      webpack: 5.112.2(webpack-cli@6.0.1)
 
   babel-messages@6.23.0:
     dependencies:
@@ -8057,7 +8071,7 @@ snapshots:
       '@babel/compat-data': 7.29.3
       '@babel/core': 7.29.13
       '@babel/helper-define-polyfill-provider': 0.6.8(@babel/core@7.29.13)
-      semver: 7.8.0
+      semver: 6.3.2
     transitivePeerDependencies:
       - supports-color
 
@@ -8311,7 +8325,7 @@ snapshots:
       babel-plugin-transform-regenerator: 6.26.0
       browserslist: 3.2.8
       invariant: 2.2.4
-      semver: 7.8.0
+      semver: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -8955,7 +8969,7 @@ snapshots:
       object.fromentries: 2.0.8
       object.groupby: 1.0.3
       object.values: 1.2.1
-      semver: 7.8.0
+      semver: 6.3.2
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
     transitivePeerDependencies:
@@ -9005,7 +9019,7 @@ snapshots:
       object.values: 1.2.1
       prop-types: 15.8.1
       resolve: 2.0.0-next.7
-      semver: 7.8.0
+      semver: 6.3.2
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
@@ -9071,6 +9085,8 @@ snapshots:
       acorn: 8.16.0
       acorn-jsx: 5.3.2(acorn@8.16.0)
       eslint-visitor-keys: 4.2.1
+
+  esprima@4.0.1: {}
 
   esquery@1.7.0:
     dependencies:
@@ -9436,7 +9452,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.3
     optionalDependencies:
-      webpack: 5.112.2(webpack-cli@5.1.4)
+      webpack: 5.112.2(webpack-cli@6.0.1)
 
   htmlparser2@6.1.0:
     dependencies:
@@ -10119,9 +10135,10 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@4.1.1:
+  js-yaml@3.15.2:
     dependencies:
-      argparse: 2.0.1
+      argparse: 1.0.10
+      esprima: 4.0.1
 
   js-yaml@4.3.2:
     dependencies:
@@ -10322,7 +10339,7 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.8.3(webpack@5.112.2)
       terser: 5.51.2
-      webpack: 5.112.2(webpack-cli@5.1.4)
+      webpack: 5.112.2(webpack-cli@6.0.1)
 
   minipass@7.1.3: {}
 
@@ -10355,7 +10372,7 @@ snapshots:
       array.prototype.flatmap: 1.3.3
       es-errors: 1.3.0
       object.entries: 1.1.9
-      semver: 7.8.0
+      semver: 6.3.2
 
   node-int64@0.4.0: {}
 
@@ -10893,7 +10910,7 @@ snapshots:
       ajv-formats: 3.0.1(ajv@8.20.0)
       ajv-keywords: 5.1.0(ajv@8.20.0)
     optionalDependencies:
-      webpack: 5.112.2(webpack-cli@5.1.4)
+      webpack: 5.112.2(webpack-cli@6.0.1)
 
   select-hose@2.0.0: {}
 
@@ -10901,6 +10918,10 @@ snapshots:
     dependencies:
       '@peculiar/x509': 1.14.3
       pkijs: 3.4.0
+
+  semver@5.7.3: {}
+
+  semver@6.3.2: {}
 
   semver@7.8.0: {}
 
@@ -11048,6 +11069,8 @@ snapshots:
       spdy-transport: 3.0.0
     transitivePeerDependencies:
       - supports-color
+
+  sprintf-js@1.0.3: {}
 
   stack-utils@2.0.6:
     dependencies:
@@ -11452,7 +11475,7 @@ snapshots:
       range-parser: 1.2.1
       schema-utils: 4.3.3
     optionalDependencies:
-      webpack: 5.112.2(webpack-cli@5.1.4)
+      webpack: 5.112.2(webpack-cli@6.0.1)
     transitivePeerDependencies:
       - tslib
 

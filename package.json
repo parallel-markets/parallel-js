@@ -16,29 +16,20 @@
   "license": "MIT",
   "homepage": "https://developer.parallelmarkets.com/docs/javascript",
   "devDependencies": {
-    "eslint": "^9.39.4",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.24.0",
+    "eslint-plugin-n": "^18.5.0",
     "eslint-plugin-promise": "^7.3.0",
-    "globals": "^16.5.0",
-    "jest": "^30.4.2",
-    "prettier": "^3.8.3",
-    "rollup": "^4.60.4"
+    "globals": "^17.14.0",
+    "jest": "^30.5.2",
+    "prettier": "^3.9.10",
+    "rollup": "^4.68.0"
   },
   "pnpm": {
     "overrides": {
-      "babel-traverse": "npm:@babel/traverse@^7.23.2",
-      "cross-spawn": "^7.0.5",
-      "micromatch": "^4.0.8",
-      "js-yaml": "^4.1.1",
-      "on-headers": "^1.1.0",
-      "braces": "^3.0.3",
-      "ws": "^8.17.1",
-      "semver": "^7.6.0",
-      "node-forge": "^1.3.2",
-      "form-data": "^4.0.4",
-      "uuid": "^11.1.1"
+      "uuid": "^11.1.1",
+      "express>qs": "^6.16.1"
     }
   }
 }
